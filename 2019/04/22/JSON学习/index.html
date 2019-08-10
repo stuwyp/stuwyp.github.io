@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Front End,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="知识管理,自我管理">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Fighting">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="JS 中 JSON 类型—— 数据的迭代1. 什么是JSON？​        JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。尽管JSON是JavaScript的一个子集，但JSON是独立于语言的文本格式，JSON 数据格式与语言无关，脱胎自JavaScript，但目前很多编程语言都支持JSON 格式数据的生成和解析（维基）。 2. json类型的数据">
+<meta name="keywords" content="Front End">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中JSON 类型—— 数据的迭代">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/JSON学习/index.html">
 <meta property="og:site_name" content="Fighting">
-<meta property="og:description" content="知识管理,自我管理">
+<meta property="og:description" content="JS 中 JSON 类型—— 数据的迭代1. 什么是JSON？​        JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。尽管JSON是JavaScript的一个子集，但JSON是独立于语言的文本格式，JSON 数据格式与语言无关，脱胎自JavaScript，但目前很多编程语言都支持JSON 格式数据的生成和解析（维基）。 2. json类型的数据">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-10T05:58:13.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fighting">
-<meta name="twitter:description" content="知识管理,自我管理">
+<meta name="twitter:title" content="JS中JSON 类型—— 数据的迭代">
+<meta name="twitter:description" content="JS 中 JSON 类型—— 数据的迭代1. 什么是JSON？​        JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。尽管JSON是JavaScript的一个子集，但JSON是独立于语言的文本格式，JSON 数据格式与语言无关，脱胎自JavaScript，但目前很多编程语言都支持JSON 格式数据的生成和解析（维基）。 2. json类型的数据">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/22/JSON学习/">
 
 
 
 
 
-  <title>Fighting</title>
+  <title>JS中JSON 类型—— 数据的迭代 | Fighting</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,9 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -249,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/22/JSON学习/" itemprop="url">JS中JSON 类型—— 数据的迭代</a></h1>
+          <h1 class="post-title" itemprop="name headline">JS中JSON 类型—— 数据的迭代</h1>
         
 
         <div class="post-meta">
@@ -301,9 +300,7 @@
       
 
       
-        
-          
-            <h2 id="JS-中-JSON-类型——-数据的迭代"><a href="#JS-中-JSON-类型——-数据的迭代" class="headerlink" title="JS 中 JSON 类型—— 数据的迭代"></a>JS 中 JSON 类型—— 数据的迭代</h2><h4 id="1-什么是JSON？"><a href="#1-什么是JSON？" class="headerlink" title="1. 什么是JSON？"></a>1. 什么是JSON？</h4><p>​        JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。尽管JSON是JavaScript的一个子集，但JSON是独立于语言的文本格式，JSON 数据格式与语言无关，脱胎自JavaScript，但目前很多编程语言都支持JSON 格式数据的生成和解析（维基）。</p>
+        <h2 id="JS-中-JSON-类型——-数据的迭代"><a href="#JS-中-JSON-类型——-数据的迭代" class="headerlink" title="JS 中 JSON 类型—— 数据的迭代"></a>JS 中 JSON 类型—— 数据的迭代</h2><h4 id="1-什么是JSON？"><a href="#1-什么是JSON？" class="headerlink" title="1. 什么是JSON？"></a>1. 什么是JSON？</h4><p>​        JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。尽管JSON是JavaScript的一个子集，但JSON是独立于语言的文本格式，JSON 数据格式与语言无关，脱胎自JavaScript，但目前很多编程语言都支持JSON 格式数据的生成和解析（维基）。</p>
 <h4 id="2-json类型的数据"><a href="#2-json类型的数据" class="headerlink" title="2. json类型的数据"></a>2. json类型的数据</h4><p>​        JavaScript中，json类型的数据，有两种形式，一种是数组形式，另一种是对象形式</p>
 <blockquote>
 <p>注意：json 与 js对象的区别 </p>
@@ -329,8 +326,6 @@
 <p>综合两种形式和嵌套的json迭代函数——json_iteration</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">json_iteration = <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> json)&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span>(json[key]) == <span class="string">'object'</span>) &#123;</span><br><span class="line">            json_iteration(json[key])</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(key,json[key])</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -345,264 +340,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Hexo搭建博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WYP">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fighting">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/22/Hexo搭建博客/" itemprop="url">Hexo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-22T23:00:05+08:00">
-                2019-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Front-End/" rel="tag"># Front End</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="Hexo-搭建个人博客"><a href="#Hexo-搭建个人博客" class="headerlink" title="Hexo 搭建个人博客"></a>Hexo 搭建个人博客</h2><h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h3><p>​        Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/22/Hexo搭建博客/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/22/Hexo搭建博客/" rel="next" title="Hexo">
+                <i class="fa fa-chevron-left"></i> Hexo
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/前端入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WYP">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fighting">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/02/前端入门/" itemprop="url">前端小白入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T10:00:05+08:00">
-                2019-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>[TOC]</p>
-<hr>
-<h4 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h4><p>前端开发入门学习有：<strong>HTML、CSS、JavaScript（简称JS）</strong> 三个部分。一个基本的网站可以由多个网页组成，一个基本的网页由HTML CSS和JavaScript组成，也即结构层(HTML)、表示层(CSS)、行为层(Javascript)。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/02/前端入门/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -612,10 +379,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -623,6 +391,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -643,8 +415,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -695,6 +476,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-中-JSON-类型——-数据的迭代"><span class="nav-number">1.</span> <span class="nav-text">JS 中 JSON 类型—— 数据的迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-什么是JSON？"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 什么是JSON？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-json类型的数据"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. json类型的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#数组形式"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">数组形式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对象形式"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">对象形式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -828,6 +625,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
