@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="[TOC]  前端小白入门0. 前言前端开发入门学习有：HTML、CSS、JavaScript（简称JS） 三个部分。一个基本的网站可以由多个网页组成，一个基本的网页由HTML CSS和JavaScript组成，也即结构层(HTML)、表示层(CSS)、行为层(Javascript)。">
+<meta name="keywords" content="Front End">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端小白入门">
+<meta property="og:url" content="http://stuapps.me/2019/04/02/前端入门/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="[TOC]  前端小白入门0. 前言前端开发入门学习有：HTML、CSS、JavaScript（简称JS） 三个部分。一个基本的网站可以由多个网页组成，一个基本的网页由HTML CSS和JavaScript组成，也即结构层(HTML)、表示层(CSS)、行为层(Javascript)。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-10T06:12:12.079Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端小白入门">
+<meta name="twitter:description" content="[TOC]  前端小白入门0. 前言前端开发入门学习有：HTML、CSS、JavaScript（简称JS） 三个部分。一个基本的网站可以由多个网页组成，一个基本的网页由HTML CSS和JavaScript组成，也即结构层(HTML)、表示层(CSS)、行为层(Javascript)。">
+  <link rel="canonical" href="http://stuapps.me/2019/04/02/前端入门/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>前端小白入门 | 个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">学习加油站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://stuapps.me/2019/04/02/前端入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WYP">
+      <meta itemprop="description" content="知识管理,自我管理">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">前端小白入门
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-02 10:00:05" itemprop="dateCreated datePublished" datetime="2019-04-02T10:00:05+08:00">2019-04-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-10 14:12:12" itemprop="dateModified" datetime="2019-08-10T14:12:12+08:00">2019-08-10</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>[TOC]</p>
+<hr>
+<h2 id="前端小白入门"><a href="#前端小白入门" class="headerlink" title="前端小白入门"></a>前端小白入门</h2><h4 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h4><p>前端开发入门学习有：<strong>HTML、CSS、JavaScript（简称JS）</strong> 三个部分。一个基本的网站可以由多个网页组成，一个基本的网页由HTML CSS和JavaScript组成，也即结构层(HTML)、表示层(CSS)、行为层(Javascript)。</p>
+<a id="more"></a>
+<h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h4><h5 id="1-HTML（超文本标记语言-Hyper-Text-Markup-Language）"><a href="#1-HTML（超文本标记语言-Hyper-Text-Markup-Language）" class="headerlink" title="(1) HTML（超文本标记语言 Hyper Text Markup Language）"></a>(1) HTML（超文本标记语言 <strong>H</strong>yper <strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage）</h5><p>HTML 是用来描述网页的一种语言。它通过<strong>标记符号</strong>来标记要显示的网页中的各个部分。网页文件本身是一种<strong>文本文件</strong>，通过在文本文件中添加标记符，可以告诉浏览器如何显示其中的内容（比如文字如何处理，画面如何安排，图片如何显示等）。浏览器按顺序阅读网页文件，然后根据标记符解释和显示其标记的内容.</p>
+<h5 id="2-CSS-层叠样式表-Cascading-Style-Sheets"><a href="#2-CSS-层叠样式表-Cascading-Style-Sheets" class="headerlink" title="(2) CSS(层叠样式表 Cascading Style Sheets)"></a>(2) CSS(层叠样式表 <strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets)</h5><p>样式表定义如何显示 HTML 元素，就像 HTML的字体标签和颜色属性所起的作用那样。样式通常保存在外部的 <strong>.css</strong> 文件中。通过仅仅编辑一个简单的 CSS 文档，外部样式表使你有能力同时改变站点中所有页面的布局和外观。</p>
+<h5 id="3-JS-JavaScript"><a href="#3-JS-JavaScript" class="headerlink" title="(3) JS( JavaScript)"></a>(3) JS( JavaScript)</h5><p>Javascript是一种基于对象(Object)和事件驱动(Event Driven)并具有安全性能的<strong>脚本语言</strong>。使用它的目的是与HTML超文本标记语言、Java脚本语言(Java小程序)一起实现在一个Web页面中链接多个对象，与Web客户交互作用。例如可以设置鼠标悬停效果，在客户端验证表单，创建定制的HTML页面，显示警告框，设置cookie等等。</p>
+<h5 id="4-联系"><a href="#4-联系" class="headerlink" title="(4) 联系"></a>(4) 联系</h5><p>简单来说（不严谨），Html就是框架，就是一个房子的顶梁柱，CSS就是刷墙的颜料，美化HTML，JavaScript是让HTML更生动，更好看，让网页会动起来（比如图片滚动）</p>
+<h4 id="2-学习路线"><a href="#2-学习路线" class="headerlink" title="2. 学习路线"></a>2. 学习路线</h4><p>个人经验，学习前端的路线应该是Html(Html5)—&gt; CSS(CSS3)—&gt;JS—&gt;Jquery，由浅入深。学打好基础，学好html和css基础，再学JS（要求先掌握基本语法，再学应用，有点难，必须深入学习）</p>
+<p>以下是个人觉得入门阶段应该熟练掌握的基础技能：</p>
+<ul>
+<li><p><a href="http://www.w3.org/TR/html401/cover.html#minitoc" target="_blank" rel="noopener">HTML4</a>，<a href="http://www.w3.org/TR/html5/#contents" target="_blank" rel="noopener">HTML5</a>语法、标签、语义（基础）</p>
+</li>
+<li><p><a href="http://www.w3.org/TR/CSS2/#minitoc" target="_blank" rel="noopener">CSS2.1</a>，<a href="http://www.w3.org/TR/2001/WD-css3-roadmap-20010523/#table" target="_blank" rel="noopener">CSS3</a>规范，与HTML结合实现各种布局、效果（基础）</p>
+</li>
+<li><p>一个成熟的客户端javascript库，推荐<a href="http://jquery.com/" target="_blank" rel="noopener">jquery</a></p>
+</li>
+<li><p>一门服务器端语言：如果有服务器端开发经验，使用已经会的语言即可，如果没有服务器端开发经验，熟悉Java可以选择Servlet，不熟悉的可以选PHP，能实现简单登陆注册功能就足够支持前端开发了，后续可能需要继续学习，最基本要求是实现简单的功能模拟，</p>
+</li>
+<li><p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="noopener">HTTP</a></p>
+</li>
+</ul>
+<p>比较好的在线学习资源有 <a href="http://www.w3school.com.cn/" target="_blank" rel="noopener">W3School</a> 和 <a href="http://www.runoob.com/" target="_blank" rel="noopener">菜鸟教程</a>，当然阅读<strong>官方文档</strong>学习是更好的选择</p>
+<p>本文在此对HTML、CSS、JS的学习进行粗略介绍。</p>
+<h4 id="3-HTML"><a href="#3-HTML" class="headerlink" title="3. HTML"></a>3. HTML</h4><ul>
+<li><p>HTML文档的后缀名</p>
+<p>  .html</p>
+<p>  .htm</p>
+</li>
+<li><p>Html的入门学习包括</p>
+<p>  Html文档结构，头部标签，文本标签，表格标签，超链接标签，图像标签，HTML5音频、视频标签，HTML5绘图标签，框架标签（不需重点学习），&lt; div &gt;标签，颜色设置，绝对路径和相对路径。</p>
+</li>
+<li><p>简单例子</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;title&gt;前端小白&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line"> &lt;h1&gt;我的第一个标题&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line"> &lt;p&gt;我的第一个段落。&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="4-CSS"><a href="#4-CSS" class="headerlink" title="4. CSS"></a>4. CSS</h4><ul>
+<li><p>CSS文件的后缀名</p>
+<p>  .css</p>
+</li>
+<li><p>CSS的定义分类</p>
+</li>
+</ul>
+<ol>
+<li><p>CSS的定义可以直接放在HTML元素的标签中，称为内联样式。其形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;This is a paragraph.&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CSS的定义可以放在HTML文件的 <code>&lt;style&gt;</code> 标签中，称为内部样式表。其形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;&lt;style&gt;body&#123;background-color:yellow;&#125;&lt;/style&gt;    &lt;/head&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CSS的定义也可以独立保存在一个扩展名为 .css的文件中，通过链接的方式包含在网页中，称为外部样式表。其形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;&lt;link rel=stylesheet type=&quot;text/css&quot; href=&quot;foo.css&quot;&gt;&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>CSS的入门学习包括</p>
+<p>  选择符，CSS的层叠性与优先次序，CSS文本属性，CSS表格属性，CSS的盒子模型和网页布局方式（定位功能和定位方式）。</p>
+</li>
+</ul>
+<h4 id="5-JS"><a href="#5-JS" class="headerlink" title="5. JS"></a>5. JS</h4><ul>
+<li><p>JS文件的后缀名</p>
+<p>  .js</p>
+</li>
+<li><p>JS的基本语法</p>
+<p>  必须掌握：常量和变量，数据类型，表达式和运算符，两种语句（循环和条件）以及最重要的函数。</p>
+</li>
+<li><p>CSS的入门学习包括</p>
+<p>  基本语法，面向对象特性（类和对象，内置对象，异常处理），在浏览器的应用（浏览器对象，JS在DOM中的应用方式，事件驱动和界面交互，JS在html5的应用等等。</p>
+</li>
+</ul>
+<h4 id="6-基本开发工具"><a href="#6-基本开发工具" class="headerlink" title="6. 基本开发工具"></a>6. 基本开发工具</h4><p>好用的工具能有效提高学习效率，将重点放在知识本身，在出现问题时能快速定位并解决问题，以下是个人觉得必备的前端开发工具：</p>
+<ul>
+<li><p><strong>文本编辑器</strong>：推荐<a href="http://www.sublimetext.com/" target="_blank" rel="noopener">Sublime Text</a>，支持各种插件、主题、设置，使用方便，当然notepad++，VScode等也是不错的选择。</p>
+</li>
+<li><p><strong>浏览器</strong>：推荐<a href="http://www.google.cn/chrome/?hl=zh-CN&amp;standalone=1" target="_blank" rel="noopener">Google Chrome</a>，更新快，对前端各种标准提供了非常好的支持</p>
+</li>
+<li><p><strong>调试工具</strong>：推荐Chrome自带的<a href="https://developer.chrome.com/devtools" target="_blank" rel="noopener">Chrome develop tools</a>（F12），可以轻松查看DOM结构、样式，通过控制台输出调试信息，调试javascript，查看网络等</p>
+</li>
+<li><p><strong>辅助工具</strong>：PhotoShop编辑图片、取色，fireworks量尺寸，AlloyDesigner对比尺寸，以及前面的到的Chrome develop tools（另学）</p>
+</li>
+</ul>
+<h4 id="7-后言"><a href="#7-后言" class="headerlink" title="7. 后言"></a>7. 后言</h4><p><strong>学习方法</strong></p>
+<ul>
+<li><p>入门阶段反复阅读<strong>经典书籍的中文版</strong>，书籍中的每一个例子都动手实现并在浏览器中查看效果（不喜欢看书籍的直接第二步）</p>
+</li>
+<li><p>在具备一定基础之后可以上网搜各种教程（包括视频教程，比如慕课网，网易云课堂）、demo，了解各种功能的实际用法和常见功能的实现方法</p>
+</li>
+<li><p>阅读HTML，CSS，JavaScript标准全面完善知识点</p>
+</li>
+<li><p>阅读前端牛人的博客、文章提升对知识的理解</p>
+</li>
+<li><p>善用搜索引擎（Google最好）</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Front-End/" rel="tag"># Front End</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/04/22/Hexo搭建博客/" rel="prev" title="Hexo">
+                  Hexo <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">WYP</p>
+  <div class="site-description motion-element" itemprop="description">知识管理,自我管理</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/stuwyp" title="GitHub &rarr; https://github.com/stuwyp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:16ypwang@stu.edu.cn" title="E-Mail &rarr; mailto:16ypwang@stu.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.jianshu.com/u/616d825d4da5" title="jianshu &rarr; https://www.jianshu.com/u/616d825d4da5" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>jianshu</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端小白入门"><span class="nav-number">1.</span> <span class="nav-text">前端小白入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-前言"><span class="nav-number">1.0.1.</span> <span class="nav-text">0. 前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简介"><span class="nav-number">1.0.2.</span> <span class="nav-text">1. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-HTML（超文本标记语言-Hyper-Text-Markup-Language）"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">(1) HTML（超文本标记语言 Hyper Text Markup Language）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-CSS-层叠样式表-Cascading-Style-Sheets"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">(2) CSS(层叠样式表 Cascading Style Sheets)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-JS-JavaScript"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">(3) JS( JavaScript)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-联系"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">(4) 联系</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-学习路线"><span class="nav-number">1.0.3.</span> <span class="nav-text">2. 学习路线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-HTML"><span class="nav-number">1.0.4.</span> <span class="nav-text">3. HTML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-CSS"><span class="nav-number">1.0.5.</span> <span class="nav-text">4. CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-JS"><span class="nav-number">1.0.6.</span> <span class="nav-text">5. JS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-基本开发工具"><span class="nav-number">1.0.7.</span> <span class="nav-text">6. 基本开发工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-后言"><span class="nav-number">1.0.8.</span> <span class="nav-text">7. 后言</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyp</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
