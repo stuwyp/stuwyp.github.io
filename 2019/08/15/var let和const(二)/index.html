@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="浅谈 var、let  和 const (二)前言在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。在前一篇文章中，我们讲到了 var、let  和 const 的块级作用域，今天我们主要学习下变量提升和函数提升。    声明方式 变量提升 暂时性死区 重复声明 初始值 作用域     var 允许 不存在 允许 不需要 除块级">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T14:51:13.300Z">
+<meta property="og:updated_time" content="2019-08-15T14:54:00.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈 var、let 和 const (二)">
 <meta name="twitter:description" content="浅谈 var、let  和 const (二)前言在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。在前一篇文章中，我们讲到了 var、let  和 const 的块级作用域，今天我们主要学习下变量提升和函数提升。    声明方式 变量提升 暂时性死区 重复声明 初始值 作用域     var 允许 不存在 允许 不需要 除块级">
@@ -262,7 +262,7 @@
                 
               
 
-              <time title="创建时间：2019-08-15 22:00:05 / 修改时间：22:51:13" itemprop="dateCreated datePublished" datetime="2019-08-15T22:00:05+08:00">2019-08-15</time>
+              <time title="创建时间：2019-08-15 22:00:05 / 修改时间：22:54:00" itemprop="dateCreated datePublished" datetime="2019-08-15T22:00:05+08:00">2019-08-15</time>
             </span>
           
             
@@ -332,7 +332,7 @@
 <p>由于js的变量提升，导致代码实际上是按照以下来执行的</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> global; <span class="comment">// 变量提升，全局作用域范围内，此时只是声明，并没有赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(global); <span class="comment">// undefined</span></span><br><span class="line">global = <span class="string">'global'</span>; <span class="comment">// 此时才赋值</span></span><br><span class="line"><span class="built_in">console</span>.log(global); <span class="comment">// global</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">　　<span class="keyword">var</span> a; <span class="comment">// 变量提升，函数作用域范围内</span></span><br><span class="line">　　<span class="built_in">console</span>.log(a); <span class="comment">// undefined</span></span><br><span class="line">　　a = <span class="string">'a'</span>;</span><br><span class="line">　　<span class="built_in">console</span>.log(a); <span class="comment">// a</span></span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
-<h5 id="let-—-不存在变量提升"><a href="#let-—-不存在变量提升" class="headerlink" title="let  — 不存在变量提升"></a>let  — 不存在变量提升</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//报错! Uncaught ReferenceError: Cannot access 'a' before initializatio</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="let-—-不存在变量提升"><a href="#let-—-不存在变量提升" class="headerlink" title="let  — 不存在变量提升"></a>let  — 不存在变量提升</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//报错! Uncaught ReferenceError: Cannot access 'a' before initializatio</span></span><br></pre></td></tr></table></figure>
 <p><strong>const — 不存在变量提升</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//报错! Uncaught ReferenceError: Cannot access 'a' before initializatio</span></span><br></pre></td></tr></table></figure>
 <blockquote>
