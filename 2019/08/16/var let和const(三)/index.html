@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="浅谈 var、let  和 const (三)前言在前一篇文章中，我们讲到了 var、let  和 const 有关的变量提升和函数提升。    声明方式 变量提升 暂时性死区 重复声明 初始值 作用域     var 允许 不存在 允许 不需要 除块级   let 不允许 存在 不允许 不需要 块级   const 不允许 存在 不允许 需要 块级    今天，我们来学习下 var、let  和">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈 var、let 和 const (三)">
+<meta property="og:url" content="http://stuapps.me/2019/08/16/var let和const(三)/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="浅谈 var、let  和 const (三)前言在前一篇文章中，我们讲到了 var、let  和 const 有关的变量提升和函数提升。    声明方式 变量提升 暂时性死区 重复声明 初始值 作用域     var 允许 不存在 允许 不需要 除块级   let 不允许 存在 不允许 不需要 块级   const 不允许 存在 不允许 需要 块级    今天，我们来学习下 var、let  和">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-16T15:32:21.891Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈 var、let 和 const (三)">
+<meta name="twitter:description" content="浅谈 var、let  和 const (三)前言在前一篇文章中，我们讲到了 var、let  和 const 有关的变量提升和函数提升。    声明方式 变量提升 暂时性死区 重复声明 初始值 作用域     var 允许 不存在 允许 不需要 除块级   let 不允许 存在 不允许 不需要 块级   const 不允许 存在 不允许 需要 块级    今天，我们来学习下 var、let  和">
+  <link rel="canonical" href="http://stuapps.me/2019/08/16/var let和const(三)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>浅谈 var、let 和 const (三) | 个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">学习加油站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://stuapps.me/2019/08/16/var let和const(三)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WYP">
+      <meta itemprop="description" content="知识管理,自我管理">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">浅谈 var、let 和 const (三)
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-16 00:00:00 / 修改时间：23:32:21" itemprop="dateCreated datePublished" datetime="2019-08-16T00:00:00+08:00">2019-08-16</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="浅谈-var、let-和-const-三"><a href="#浅谈-var、let-和-const-三" class="headerlink" title="浅谈 var、let  和 const (三)"></a>浅谈 var、let  和 const (三)</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在前一篇文章中，我们讲到了 var、let  和 const 有关的变量提升和函数提升。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">声明方式</th>
+<th style="text-align:center">变量提升</th>
+<th style="text-align:center">暂时性死区</th>
+<th style="text-align:center">重复声明</th>
+<th style="text-align:center">初始值</th>
+<th style="text-align:center">作用域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">var</td>
+<td style="text-align:center">允许</td>
+<td style="text-align:center">不存在</td>
+<td style="text-align:center">允许</td>
+<td style="text-align:center">不需要</td>
+<td style="text-align:center">除块级</td>
+</tr>
+<tr>
+<td style="text-align:center">let</td>
+<td style="text-align:center">不允许</td>
+<td style="text-align:center">存在</td>
+<td style="text-align:center">不允许</td>
+<td style="text-align:center">不需要</td>
+<td style="text-align:center">块级</td>
+</tr>
+<tr>
+<td style="text-align:center">const</td>
+<td style="text-align:center">不允许</td>
+<td style="text-align:center">存在</td>
+<td style="text-align:center">不允许</td>
+<td style="text-align:center">需要</td>
+<td style="text-align:center">块级</td>
+</tr>
+</tbody>
+</table>
+<p>今天，我们来学习下 var、let  和 const的其他区别点：暂时性死区，重复声明和初始值</p>
+<a id="more"></a>
+<h4 id="1-暂时性死区"><a href="#1-暂时性死区" class="headerlink" title="1. 暂时性死区"></a>1. 暂时性死区</h4><h6 id="1-什么是暂时性死区"><a href="#1-什么是暂时性死区" class="headerlink" title="(1)  什么是暂时性死区"></a>(1)  什么是暂时性死区</h6><p>ES6 明确规定，如果区块中存在 let 和 const 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。这在语法上，称为“暂时性死区”（Temporal Dead Zone，简称 TDZ）。</p>
+<p><strong>理解：</strong>只要块级作用域内存在 let 或 const 命令，它所声明的变量就绑定（binding）这个区域，不再受外部影响。当进入这个区域，let 或者const 声明的变量不能被访问（获取或设置）直到执行到达声明。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;   </span><br><span class="line">  <span class="comment">// TDZ 开始   </span></span><br><span class="line">  tmp = <span class="string">'a'</span>; <span class="comment">// ReferenceError   </span></span><br><span class="line">  <span class="built_in">console</span>.log(tmp); <span class="comment">// ReferenceError    </span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">let</span> tmp; </span><br><span class="line">  <span class="comment">// TDZ 结束   </span></span><br><span class="line">  <span class="built_in">console</span>.log(tmp); <span class="comment">// undefined    </span></span><br><span class="line">  </span><br><span class="line">  tmp = <span class="number">1</span>;   </span><br><span class="line">  <span class="built_in">console</span>.log(tmp); <span class="comment">// 1 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>代码理解：</strong>在块级作用域内，一开始存在全局变量 tmp。但是，接下来的 let 声明了一个局部变量 tmp，导致后者绑定了这个块级作用域。所以在 let 声明变量前，对 tmp 赋值会报错（ReferenceError）。</p>
+<p><strong>本质：</strong>只要一进入块级作用域，所要使用的变量 tmp 就已经存在了，但是不可获取。只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</p>
+<h6 id="2-typeof-陷阱"><a href="#2-typeof-陷阱" class="headerlink" title="(2)  typeof 陷阱"></a>(2)  typeof 陷阱</h6><ul>
+<li>当一个变量没有被声明时，使用 typeof 是不会报错的</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> undeclared_variable 		<span class="comment">// "undefined"</span></span><br></pre></td></tr></table></figure>
+<p>undeclared_variable 是一个不存在的变量名，结果返回“undefined”</p>
+<ul>
+<li>“暂时性死区” 意味着 typeof 不再是一个百分之百安全的操作。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> x; <span class="comment">// 报错！ ReferenceError</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br></pre></td></tr></table></figure>
+<p>变量 x 使用 let 命令声明，所以在声明之前，都属于 x 的“暂时性死区”，只要用到该变量就会报错。</p>
+<p>因此，typeof 运行时就会抛出一个ReferenceError</p>
+<p><strong>总结：</strong> <code>typeof</code>运算符并非是百分之百安全的，因此我们要养成良好的编程习惯，变量一定要在声明之后使用，否则就报错</p>
+<h6 id="（3）-其他例子"><a href="#（3）-其他例子" class="headerlink" title="（3） 其他例子"></a>（3） 其他例子</h6><p>实际上，有些 “死区” 比较隐蔽，不太容易发现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun(x = y, y = 2) &#123;</span><br><span class="line">	return [x, y];</span><br><span class="line">&#125;</span><br><span class="line">fun(); // 报错</span><br></pre></td></tr></table></figure>
+<p>上面代码中，调用 fun 函数之所以报错（某些实现 可能不会报错），是因为参数 x 默认值等于另一个参数 y ，而此时 y 还没有声明，属于”死区“。</p>
+<p>如果 y 的默认值是 x ，就不会报错，因为此时 x 已经声明了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x = <span class="number">2</span>, y = x</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line">fun(); <span class="comment">// [2, 2]</span></span><br></pre></td></tr></table></figure>
+<p>此外，下面的代码也会报错，与 var 的行为不同。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="keyword">var</span> x = x;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">let</span> x = x; </span><br><span class="line"><span class="comment">// ReferenceError</span></span><br></pre></td></tr></table></figure>
+<p>上面代码报错，也是因为暂时性死区。使用 let 声明变量时，只要变量在还没有声明完成前使用，就会报错。</p>
+<p>上面这行就属于这个情况，在变量<code>x</code>的声明语句还没有执行完成前，就去取<code>x</code>的值，导致报错”<code>x</code>未定义“。</p>
+<h6 id="4-总结"><a href="#4-总结" class="headerlink" title="(4) 总结"></a>(4) 总结</h6><p>ES6 规定暂时性死区和<code>let</code>、<code>const</code>语句不出现变量提升，主要是为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。这样的错误在 ES5 是很常见的，现在有了这种规定，避免此类错误就很容易了。</p>
+<h4 id="2-重复声明"><a href="#2-重复声明" class="headerlink" title="2. 重复声明"></a>2. 重复声明</h4><p><strong>定义：</strong>指在相同作用域内，重复声明同一个变量。</p>
+<blockquote>
+<p> let 和 const 命令声明的变量不允许重复声明，而 var 可以重复声明。</p>
+</blockquote>
+<p>在一个作用域中，已经用 var、let、cons t声明过某标识符之后，不能在用 let、const声明变量，不然会抛出错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">0</span>; <span class="comment">// 报错! Uncaught SyntaxError: Identifier 'a' has already been declared</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14</span></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.1415</span> <span class="comment">// 报错! Uncaught SyntaxError: Identifier 'a' has already been declared</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>在作用域中,嵌套一个作用域就不会报错了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不会报错</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-初始值-和-const"><a href="#3-初始值-和-const" class="headerlink" title="3. 初始值 和 const"></a>3. 初始值 和 const</h4><blockquote>
+<p>let 和 var 声明变量时，可以不需要初始值，而 const 需要。</p>
+</blockquote>
+<ul>
+<li><p>const 声明的是只读的常量，一旦声明，就必须立即初始化（赋值），否则会报错</p>
+</li>
+<li><p>const 声明之后 值不能改变。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14</span>;</span><br><span class="line">PI = <span class="number">3.1415</span>; </span><br><span class="line"><span class="comment">// 报错! Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<p>如果 const 声明的是一个引用类型，则不能改变它的内存地址</p>
+<blockquote>
+<p>本质：const 实际上保证的，并不是变量的值不得改动，而是<strong>变量指向的那个</strong> 内存地址所保存的数据 <strong>不得改动</strong>。</p>
+<ul>
+<li>对于简单类型的数据（数值、字符串、布尔值），值就保存在变量指向的那个内存地址，因此等同于常量。</li>
+<li>对于复合类型的数据（主要是对象和数组），变量指向的内存地址，保存的只是一个指向实际数据的指针，const只能保证这个指针是固定的（即总是指向另一个固定的地址），至于它指向的数据结构是不是可变的，就完全不能控制了</li>
+</ul>
+</blockquote>
+<p>举例如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  a : <span class="string">'123'</span></span><br><span class="line">&#125;</span><br><span class="line">obj.a = <span class="string">'abc'</span>;</span><br><span class="line"><span class="comment">// 不会发生报错，只会改变值</span></span><br><span class="line">obj = &#123;&#125;;</span><br><span class="line"><span class="comment">// 由于改变了对象的指针，所以会发生报错 </span></span><br><span class="line"><span class="comment">// Uncaught TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<p>如果真的想将对象冻结，应该使用Object.freeze方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;); </span><br><span class="line"><span class="comment">// 常规模式时，下面一行不起作用；</span></span><br><span class="line"><span class="comment">// 严格模式时，该行会报错</span></span><br><span class="line">foo.prop = <span class="number">123</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="补充：顶层对象的属性"><a href="#补充：顶层对象的属性" class="headerlink" title="补充：顶层对象的属性"></a>补充：顶层对象的属性</h4><p>let、const 和 class 命令声明的全局变量，不属于顶层对象的属性。</p>
+<p><strong>从 ES6 开始，全局变量将逐步与顶层对象的属性脱钩。</strong></p>
+<p>全局作用域中，var 声明的变量关联到顶层对象的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 如果在 Node 的 REPL 环境，可以写成 global.a</span></span><br><span class="line"><span class="comment">// 或者采用通用方法，写成 this.a</span></span><br><span class="line"><span class="built_in">window</span>.a <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">window</span>.b <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>参考文章 <a href="http://es6.ruanyifeng.com/#docs/let" target="_blank" rel="noopener">阮一峰 ECMAScript 6 入门</a></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/JS/" rel="tag"># JS</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/08/15/var let和const(二)/" rel="next" title="浅谈 var、let 和 const (二)">
+                  <i class="fa fa-chevron-left"></i> 浅谈 var、let 和 const (二)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">WYP</p>
+  <div class="site-description motion-element" itemprop="description">知识管理,自我管理</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/stuwyp" title="GitHub &rarr; https://github.com/stuwyp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:16ypwang@stu.edu.cn" title="E-Mail &rarr; mailto:16ypwang@stu.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.jianshu.com/u/616d825d4da5" title="简书 &rarr; https://www.jianshu.com/u/616d825d4da5" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>简书</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅谈-var、let-和-const-三"><span class="nav-number">1.</span> <span class="nav-text">浅谈 var、let  和 const (三)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-暂时性死区"><span class="nav-number">1.2.</span> <span class="nav-text">1. 暂时性死区</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-什么是暂时性死区"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">(1)  什么是暂时性死区</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-typeof-陷阱"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">(2)  typeof 陷阱</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#（3）-其他例子"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">（3） 其他例子</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-总结"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">(4) 总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-重复声明"><span class="nav-number">1.3.</span> <span class="nav-text">2. 重复声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-初始值-和-const"><span class="nav-number">1.4.</span> <span class="nav-text">3. 初始值 和 const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充：顶层对象的属性"><span class="nav-number">1.5.</span> <span class="nav-text">补充：顶层对象的属性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyp</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+    
+    
+  
+  <script color="255,51,51" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
