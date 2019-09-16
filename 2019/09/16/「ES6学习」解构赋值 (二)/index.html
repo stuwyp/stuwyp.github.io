@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="「ES6学习」解构赋值（二）注：本文参考文章 阮一峰 ECMAScript 6 入门 引言 按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构  解构赋值语法是一种 JavaScript 表达式。通过解构赋值, 可以将属性/值从对象/数组中取出,赋值给其他变量。 变量的解构赋值主要有：  数组的解构赋值 对象的解构赋值 字符串的解构赋值 数值和布尔值的解构赋值 函数参数的解构赋值">
+<meta name="keywords" content="JS,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「ES6学习」解构赋值（二）">
+<meta property="og:url" content="http://stuapps.me/2019/09/16/「ES6学习」解构赋值 (二)/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="「ES6学习」解构赋值（二）注：本文参考文章 阮一峰 ECMAScript 6 入门 引言 按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构  解构赋值语法是一种 JavaScript 表达式。通过解构赋值, 可以将属性/值从对象/数组中取出,赋值给其他变量。 变量的解构赋值主要有：  数组的解构赋值 对象的解构赋值 字符串的解构赋值 数值和布尔值的解构赋值 函数参数的解构赋值">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-16T05:13:24.066Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「ES6学习」解构赋值（二）">
+<meta name="twitter:description" content="「ES6学习」解构赋值（二）注：本文参考文章 阮一峰 ECMAScript 6 入门 引言 按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构  解构赋值语法是一种 JavaScript 表达式。通过解构赋值, 可以将属性/值从对象/数组中取出,赋值给其他变量。 变量的解构赋值主要有：  数组的解构赋值 对象的解构赋值 字符串的解构赋值 数值和布尔值的解构赋值 函数参数的解构赋值">
+  <link rel="canonical" href="http://stuapps.me/2019/09/16/「ES6学习」解构赋值 (二)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>「ES6学习」解构赋值（二） | 个人博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">学习加油站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://stuapps.me/2019/09/16/「ES6学习」解构赋值 (二)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WYP">
+      <meta itemprop="description" content="知识管理,自我管理">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">「ES6学习」解构赋值（二）
+
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-16 00:00:00 / 修改时间：13:13:24" itemprop="dateCreated datePublished" datetime="2019-09-16T00:00:00+08:00">2019-09-16</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="「ES6学习」解构赋值（二）"><a href="#「ES6学习」解构赋值（二）" class="headerlink" title="「ES6学习」解构赋值（二）"></a>「ES6学习」解构赋值（二）</h2><p><em>注：本文参考文章 <a href="http://es6.ruanyifeng.com/#docs/destructuring" target="_blank" rel="noopener">阮一峰 ECMAScript 6 入门</a></em></p>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><blockquote>
+<p>按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构</p>
+</blockquote>
+<p><strong>解构赋值</strong>语法是一种 JavaScript 表达式。通过<strong>解构赋值,</strong> 可以将属性/值从对象/数组中取出,赋值给其他变量。</p>
+<p>变量的解构赋值主要有：</p>
+<ul>
+<li>数组的解构赋值</li>
+<li>对象的解构赋值</li>
+<li>字符串的解构赋值</li>
+<li>数值和布尔值的解构赋值</li>
+<li>函数参数的解构赋值</li>
+</ul>
+<a id="more"></a>
+<h3 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h3><h5 id="对象的解构与数组的重要不同之处"><a href="#对象的解构与数组的重要不同之处" class="headerlink" title="对象的解构与数组的重要不同之处"></a>对象的解构与数组的重要不同之处</h5><ul>
+<li>数组的元素按次序排列，变量的取值由它的位置决定；</li>
+<li><p>对象的元素/属性没有次序，变量必须与属性同名，才能取到正确的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; a, b &#125; = &#123; <span class="attr">b</span>:<span class="string">'bb'</span>, <span class="attr">a</span>:<span class="string">'aa'</span>&#125;;</span><br><span class="line"><span class="comment">// a="aa"; b="bb"</span></span><br><span class="line"><span class="comment">// 次序不一致，对取值没有影响</span></span><br><span class="line"><span class="keyword">let</span> &#123; test &#125; = &#123; <span class="attr">Test</span>: <span class="string">'aa'</span>, <span class="attr">text</span>:<span class="string">'bb'</span>&#125;;</span><br><span class="line"><span class="comment">// test=undefined</span></span><br><span class="line"><span class="comment">// 没有对应的同名属性：解构失败，变量的值等于undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="可以将现有对象的方法，赋值到某个变量"><a href="#可以将现有对象的方法，赋值到某个变量" class="headerlink" title="可以将现有对象的方法，赋值到某个变量"></a>可以将现有对象的方法，赋值到某个变量</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Math 对象</span></span><br><span class="line"><span class="keyword">let</span> &#123; log, sin, cos &#125; = <span class="built_in">Math</span>;</span><br><span class="line"><span class="comment">// console 对象</span></span><br><span class="line"><span class="keyword">const</span> &#123; log &#125; = <span class="built_in">console</span>;</span><br><span class="line">log(<span class="string">'hello'</span>) <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+<h6 id="如果变量名与属性名不一致，必须写成下面这样"><a href="#如果变量名与属性名不一致，必须写成下面这样" class="headerlink" title="如果变量名与属性名不一致，必须写成下面这样"></a>如果变量名与属性名不一致，必须写成下面这样</h6> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">first</span>: f, <span class="attr">last</span>: l &#125; = &#123; <span class="attr">first</span>: <span class="string">'hello'</span>, <span class="attr">last</span>: <span class="string">'world'</span> &#125;;</span><br><span class="line"><span class="comment">//f='hello'; l='world'</span></span><br></pre></td></tr></table></figure>
+<h5 id="对象的解构赋值的内部机制"><a href="#对象的解构赋值的内部机制" class="headerlink" title="对象的解构赋值的内部机制"></a>对象的解构赋值的内部机制</h5><ul>
+<li><p>先找到同名属性，然后再赋给对应的变量</p>
+</li>
+<li><p>真正被赋值的是后者，而不是前者</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">first</span>: one &#125; = &#123; <span class="attr">first</span>: <span class="string">'1'</span>, <span class="attr">second</span>: <span class="string">'2'</span> &#125;;</span><br><span class="line"></span><br><span class="line">one <span class="comment">// "1"</span></span><br><span class="line">first <span class="comment">// Uncaught ReferenceError: first is not defined</span></span><br></pre></td></tr></table></figure>
+<p>first是匹配的模式，one才是变量。真正被赋值的是变量one，而不是模式first。</p>
+<h5 id="嵌套结构的对象"><a href="#嵌套结构的对象" class="headerlink" title="嵌套结构的对象"></a>嵌套结构的对象</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  loc: &#123;</span><br><span class="line">    start: &#123;</span><br><span class="line">      line: <span class="number">1</span>,</span><br><span class="line">      column: <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; loc, <span class="attr">loc</span>: &#123; start &#125;, <span class="attr">loc</span>: &#123; <span class="attr">start</span>: &#123; line &#125;&#125; &#125; = obj;</span><br><span class="line">line <span class="comment">// 1</span></span><br><span class="line">loc  <span class="comment">// Object &#123;start: Object&#125;</span></span><br><span class="line">start <span class="comment">// Object &#123;line: 1, column: 5&#125;</span></span><br></pre></td></tr></table></figure>
+<p>三次解构赋值，分别是对loc、start、line三个属性的解构赋值。</p>
+<blockquote>
+<p>注意: 最后一次对line属性的解构赋值之中，只有line是变量，loc和start都是模式，不是变量。</p>
+</blockquote>
+<h5 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h5><p>默认值生效的条件是，对象的属性值严格等于undefined</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123;x = <span class="number">1</span>&#125; = &#123;<span class="attr">x</span>: <span class="literal">undefined</span>&#125;;</span><br><span class="line">x <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;x = <span class="number">1</span>&#125; = &#123;<span class="attr">x</span>: <span class="literal">null</span>&#125;;</span><br><span class="line">x <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<p> 上面代码中，属性x等于null，因为null与undefined不严格相等，所以是个有效的赋值，导致默认值1不会生效。</p>
+<h5 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h5><h6 id="1-将一个已经声明的变量用于解构赋值"><a href="#1-将一个已经声明的变量用于解构赋值" class="headerlink" title="1. 将一个已经声明的变量用于解构赋值"></a>1. 将一个已经声明的变量用于解构赋值</h6> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误的写法</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;  <span class="comment">// SyntaxError: syntax error</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">(&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;);  <span class="comment">// 将整个解构赋值语句，放在一个圆括号里面，就可以正确执行</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript 引擎会将{x}理解成一个代码块，从而发生语法错误。</p>
+<p>只有不将大括号写在行首，避免 JavaScript 将其解释为代码块，才能解决这个问题。</p>
+<h6 id="2-解构赋值允许等号左边的模式之中，不放置任何变量名。"><a href="#2-解构赋值允许等号左边的模式之中，不放置任何变量名。" class="headerlink" title="2. 解构赋值允许等号左边的模式之中，不放置任何变量名。"></a>2. 解构赋值允许等号左边的模式之中，不放置任何变量名。</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(&#123;&#125; = [<span class="literal">true</span>, <span class="literal">false</span>]);</span><br><span class="line">(&#123;&#125; = <span class="string">'abc'</span>);</span><br><span class="line">(&#123;&#125; = []);</span><br></pre></td></tr></table></figure>
+<h6 id="3-由于数组本质是-特殊的对象-，因此可以对数组进行对象属性的解构"><a href="#3-由于数组本质是-特殊的对象-，因此可以对数组进行对象属性的解构" class="headerlink" title="3. 由于数组本质是 特殊的对象 ，因此可以对数组进行对象属性的解构"></a>3. 由于数组本质是 <em>特殊的对象</em> ，因此可以对数组进行对象属性的解构</h6> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="number">0</span> : first, [arr.length - <span class="number">1</span>] : last&#125; = arr;</span><br><span class="line">first <span class="comment">// 1</span></span><br><span class="line">last <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h3><h6 id="字符串的解构赋值-——-字符串被转换成了一个-类似数组的对象。"><a href="#字符串的解构赋值-——-字符串被转换成了一个-类似数组的对象。" class="headerlink" title="字符串的解构赋值 —— 字符串被转换成了一个 类似数组的对象。"></a>字符串的解构赋值 —— 字符串被转换成了一个 <strong>类似数组的对象</strong>。</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b, c, d, e] = <span class="string">'hello'</span>;</span><br><span class="line">a <span class="comment">// "h"</span></span><br><span class="line">b <span class="comment">// "e"</span></span><br><span class="line">c <span class="comment">// "l"</span></span><br><span class="line">d <span class="comment">// "l"</span></span><br><span class="line">e <span class="comment">// "o"</span></span><br></pre></td></tr></table></figure>
+<h6 id="类似数组的对象都有一个length属性"><a href="#类似数组的对象都有一个length属性" class="headerlink" title="类似数组的对象都有一个length属性"></a>类似数组的对象都有一个length属性</h6> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">length</span> : len&#125; = <span class="string">'hello'</span>;</span><br><span class="line">len <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/JS/" rel="tag"># JS</a>
+            
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/14/「ES6学习」解构赋值 (一)/" rel="next" title="「ES6学习」解构赋值（一）">
+                  <i class="fa fa-chevron-left"></i> 「ES6学习」解构赋值（一）
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">WYP</p>
+  <div class="site-description motion-element" itemprop="description">知识管理,自我管理</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/stuwyp" title="GitHub &rarr; https://github.com/stuwyp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:16ypwang@stu.edu.cn" title="E-Mail &rarr; mailto:16ypwang@stu.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.jianshu.com/u/616d825d4da5" title="简书 &rarr; https://www.jianshu.com/u/616d825d4da5" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>简书</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#「ES6学习」解构赋值（二）"><span class="nav-number">1.</span> <span class="nav-text">「ES6学习」解构赋值（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的解构赋值"><span class="nav-number">1.2.</span> <span class="nav-text">对象的解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象的解构与数组的重要不同之处"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">对象的解构与数组的重要不同之处</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#可以将现有对象的方法，赋值到某个变量"><span class="nav-number">1.2.0.1.1.</span> <span class="nav-text">可以将现有对象的方法，赋值到某个变量</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如果变量名与属性名不一致，必须写成下面这样"><span class="nav-number">1.2.0.1.2.</span> <span class="nav-text">如果变量名与属性名不一致，必须写成下面这样</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对象的解构赋值的内部机制"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">对象的解构赋值的内部机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#嵌套结构的对象"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">嵌套结构的对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认值"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">默认值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意点："><span class="nav-number">1.2.0.5.</span> <span class="nav-text">注意点：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-将一个已经声明的变量用于解构赋值"><span class="nav-number">1.2.0.5.1.</span> <span class="nav-text">1. 将一个已经声明的变量用于解构赋值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-解构赋值允许等号左边的模式之中，不放置任何变量名。"><span class="nav-number">1.2.0.5.2.</span> <span class="nav-text">2. 解构赋值允许等号左边的模式之中，不放置任何变量名。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-由于数组本质是-特殊的对象-，因此可以对数组进行对象属性的解构"><span class="nav-number">1.2.0.5.3.</span> <span class="nav-text">3. 由于数组本质是 特殊的对象 ，因此可以对数组进行对象属性的解构</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的解构赋值"><span class="nav-number">1.3.</span> <span class="nav-text">字符串的解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#字符串的解构赋值-——-字符串被转换成了一个-类似数组的对象。"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">字符串的解构赋值 —— 字符串被转换成了一个 类似数组的对象。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#类似数组的对象都有一个length属性"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">类似数组的对象都有一个length属性</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyp</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+    
+    
+  
+  <script color="255,51,51" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+</body>
+</html>
