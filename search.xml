@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JS 判断对象是不是数组]]></title>
+    <url>%2F2019%2F10%2F28%2FJS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%B8%8D%E6%98%AF%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[JS 判断对象是不是数组前端面试或笔试经典题目之一——判断对象/数组 一、用 instanceof 操作符判断 instanceof运算符可以用来判断某个构造函数的prototype属性所指向的对象是否存在于另外一个要检测对象的原型链上 12345const a = [];const b = &#123;&#125;;console.log(a instanceof Array); //trueconsole.log(a instanceof Object);//true,在数组的原型链上也能找到Object构造函数console.log(b instanceof Array); //false 注意：instanceof操作符的问题在于，它假定只有一个全局环境。如果网页中包含多个框架，那实际上就存在两个以上不同的全局执行环境，从而存在两个以上不同版本的Array构造函数。 如果你从一个框架向另一个框架传入一个数组，那么传入的数组与在第二个框架中原生创建的数组分别具有各自不同的构造函数。 二、用对象的 constructor 属性判断 实例化的数组拥有一个constructor属性，这个属性指向生成这个数组的方法 1234const a = [];const b = &#123;&#125;console.log(a.constructor == Array); //trueconsole.log(b.constructor == Array); //false 注意： constructor属性是可以被重写的 。 constructor属性一旦被修改，就不能确保一定是数组 。因此， 这种方法来判断数组是不靠谱的 。 三、用 Object.prototype.toString 判断 每一个继承自Object的对象都拥有toString的方法 使用call或者apply方法来改变toString方法的执行上下文 1234const a = []const b = &#123;&#125;console.log(Object.prototype.toString.call(a)==='[object Array]') // trueconsole.log(Object.prototype.toString.call(b)==='[object Array]') // false 四、用 Array.isArray()判断Array.isArray() 用于确定传递的值是否是一个数组 1234const a = [];const b = &#123;&#125;;Array.isArray(a);//trueArray.isArray(b);//false 目前所有主流浏览器和IE9+都对其进行了支持，IE8及以下浏览器不支持该方法 Polyfill—— 假如不存在 Array.isArray()，则在其他代码之前运行下面的代码将创建该方法。 12345if (!Array.isArray) &#123; Array.isArray = function(arg) &#123; return Object.prototype.toString.call(arg) === '[object Array]'; &#125;;&#125;]]></content>
+      <tags>
+        <tag>JS</tag>
+        <tag>ES6</tag>
+        <tag>Array</tag>
+        <tag>Object</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JavaScript 数组去重(一)]]></title>
     <url>%2F2019%2F10%2F04%2FJavaScript%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%2F</url>
     <content type="text"><![CDATA[JavaScript 数组去重(一)前端面试或笔试经典题目之一——数组去重 一、ES6 + Set 去重法 可以去重 NaN 无法去重[], {} 12345function unique (arr) &#123; return Array.from(new Set(arr)) // or // return [...new Set(arr)]&#125; 二、for循环 + indexOf+ splice 去重法for循环倒序遍历，利用indexOf查找遍历值的索引，并用splice去重 由于NaN !== NaN ，因此当多个NaN 存在时，不会去重NaN 无法去重[], {} 12345678910function unique (arr) &#123; for (var i = arr.length -1;i &gt; 0; i--)&#123; // 循环遍历，从后面开始遍历不用管位置问题 if (arr.slice(0, i).indexOf(arr[i]) !== -1) &#123; // 元素与前面的所有元素比较，如果前面存在相同的则删掉自身 arr.splice(i, 1) &#125; &#125; return arr&#125; 三、forEach + indexOf + 新数组 去重法新建一个空数组，for 循环原数组，判断结果数组是否存在当前元素. 如果有相同的值则跳过，不相同则push进数组 由于NaN !== NaN ，因此当多个NaN 存在时，不会去重NaN 无法去重[], {} 123456789function unique (arr) &#123; let a = [] arr.forEach(i=&gt;&#123; if(a.indexOf(i) === -1) a.push(i) &#125;) return a&#125; 四、fillter +indexOf 去重法使用数组的filter方法和数组的indexOf方法 无法去重[], {} NaN 被删除了 12345function unique(arr) &#123; return arr.filter(function(item, index, arr)&#123; return arr.indexOf(item) === index; &#125;) &#125; 五、filter + hasOwnProperty 去重法使用数组的filter方法和对象的hasOwnProperty方法 123456function unique(arr) &#123; let obj = &#123;&#125;; return arr.filter(function(item, index, arr)&#123; return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true) &#125;)&#125;]]></content>
