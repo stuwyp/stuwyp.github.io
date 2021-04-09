@@ -55,19 +55,21 @@
   };
 </script>
 
-  <meta name="description" content="JavaScript 数组去重(一)前端面试或笔试经典题目之一——数组去重">
-<meta name="keywords" content="JS,ES6,Array">
+  <meta name="description" content="一、 层叠上下文、层叠等级和层叠顺序 层叠上下文(stacking context)层叠上下文是HTML中一个三维的概念。在CSS2.1规范中，每个盒模型的位置是三维的，分别是平面画布上的X轴，Y轴以及表示层叠的Z轴。 一般情况下，元素在页面上沿X轴Y轴平铺，我们察觉不到它们在Z轴上的层叠关系。而一旦元素发生堆叠，这时就能发现某个元素可能覆盖了另一个元素或者被另一个元素覆盖。    层叠等级(st">
+<meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 数组去重(一)">
-<meta property="og:url" content="http://stuapps.me/2019/10/04/JavaScript数组去重/index.html">
+<meta property="og:title" content="z-index和层叠上下文">
+<meta property="og:url" content="http://stuapps.me/2021/04/10/z-index+层叠上下文/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="JavaScript 数组去重(一)前端面试或笔试经典题目之一——数组去重">
+<meta property="og:description" content="一、 层叠上下文、层叠等级和层叠顺序 层叠上下文(stacking context)层叠上下文是HTML中一个三维的概念。在CSS2.1规范中，每个盒模型的位置是三维的，分别是平面画布上的X轴，Y轴以及表示层叠的Z轴。 一般情况下，元素在页面上沿X轴Y轴平铺，我们察觉不到它们在Z轴上的层叠关系。而一旦元素发生堆叠，这时就能发现某个元素可能覆盖了另一个元素或者被另一个元素覆盖。    层叠等级(st">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-04T14:10:52.962Z">
+<meta property="og:image" content="http://stuapps.me/z-index.png">
+<meta property="og:updated_time" content="2021-04-09T16:03:42.328Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript 数组去重(一)">
-<meta name="twitter:description" content="JavaScript 数组去重(一)前端面试或笔试经典题目之一——数组去重">
-  <link rel="canonical" href="http://stuapps.me/2019/10/04/JavaScript数组去重/">
+<meta name="twitter:title" content="z-index和层叠上下文">
+<meta name="twitter:description" content="一、 层叠上下文、层叠等级和层叠顺序 层叠上下文(stacking context)层叠上下文是HTML中一个三维的概念。在CSS2.1规范中，每个盒模型的位置是三维的，分别是平面画布上的X轴，Y轴以及表示层叠的Z轴。 一般情况下，元素在页面上沿X轴Y轴平铺，我们察觉不到它们在Z轴上的层叠关系。而一旦元素发生堆叠，这时就能发现某个元素可能覆盖了另一个元素或者被另一个元素覆盖。    层叠等级(st">
+<meta name="twitter:image" content="http://stuapps.me/z-index.png">
+  <link rel="canonical" href="http://stuapps.me/2021/04/10/z-index+层叠上下文/">
 
 
 <script id="page-configurations">
@@ -81,7 +83,7 @@
   };
 </script>
 
-  <title>JavaScript 数组去重(一) | 个人博客</title>
+  <title>z-index和层叠上下文 | 个人博客</title>
   
 
 
@@ -231,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://stuapps.me/2019/10/04/JavaScript数组去重/">
+    <link itemprop="mainEntityOfPage" href="http://stuapps.me/2021/04/10/z-index+层叠上下文/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WYP">
@@ -245,7 +247,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">JavaScript 数组去重(一)
+          <h1 class="post-title" itemprop="name headline">z-index和层叠上下文
 
             
           </h1>
@@ -262,7 +264,7 @@
                 
               
 
-              <time title="创建时间：2019-10-04 00:00:00 / 修改时间：22:10:52" itemprop="dateCreated datePublished" datetime="2019-10-04T00:00:00+08:00">2019-10-04</time>
+              <time title="创建时间：2021-04-10 00:00:00 / 修改时间：00:03:42" itemprop="dateCreated datePublished" datetime="2021-04-10T00:00:00+08:00">2021-04-10</time>
             </span>
           
             
@@ -281,44 +283,107 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="JavaScript-数组去重-一"><a href="#JavaScript-数组去重-一" class="headerlink" title="JavaScript 数组去重(一)"></a>JavaScript 数组去重(一)</h1><p>前端面试或笔试经典题目之一——数组去重</p>
-<a id="more"></a>
-<h3 id="一、ES6-Set-去重法"><a href="#一、ES6-Set-去重法" class="headerlink" title="一、ES6 + Set 去重法"></a>一、<code>ES6</code> + <code>Set</code> 去重法</h3><blockquote>
-<ol>
-<li><p>可以去重 <code>NaN</code></p>
-</li>
-<li><p>无法去重<code>[]</code>, <code>{}</code> </p>
+        <h3 id="一、-层叠上下文、层叠等级和层叠顺序"><a href="#一、-层叠上下文、层叠等级和层叠顺序" class="headerlink" title="一、 层叠上下文、层叠等级和层叠顺序"></a>一、 层叠上下文、层叠等级和层叠顺序</h3><ol>
+<li><h5 id="层叠上下文-stacking-context"><a href="#层叠上下文-stacking-context" class="headerlink" title="层叠上下文(stacking context)"></a>层叠上下文(stacking context)</h5><p>层叠上下文是HTML中一个三维的概念。在CSS2.1规范中，每个盒模型的位置是三维的，分别是平面画布上的X轴，Y轴以及表示层叠的Z轴。</p>
+<p>一般情况下，元素在页面上沿X轴Y轴平铺，我们察觉不到它们在Z轴上的层叠关系。而一旦元素发生堆叠，这时就能发现某个元素可能覆盖了另一个元素或者被另一个元素覆盖。</p>
 </li>
 </ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">  <span class="comment">// or</span></span><br><span class="line">  <span class="comment">// return	[...new Set(arr)]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="二、for循环-indexOf-splice-去重法"><a href="#二、for循环-indexOf-splice-去重法" class="headerlink" title="二、for循环 + indexOf+ splice  去重法"></a>二、for循环 + <code>indexOf</code>+ <code>splice</code>  去重法</h3><p>for循环倒序遍历，利用<code>indexOf</code>查找遍历值的索引，并用<code>splice</code>去重</p>
-<blockquote>
-<ol>
-<li>由于<code>NaN</code> !== <code>NaN</code>  ，因此当多个<code>NaN</code> 存在时，不会去重<code>NaN</code></li>
-<li>无法去重<code>[]</code>, <code>{}</code> </li>
+<ol start="2">
+<li><h5 id="层叠等级-stacking-level，层叠级别-层叠水平"><a href="#层叠等级-stacking-level，层叠级别-层叠水平" class="headerlink" title="层叠等级(stacking level，层叠级别/层叠水平)"></a>层叠等级(stacking level，层叠级别/层叠水平)</h5><ul>
+<li>在同一个层叠上下文中，它描述定义的是该层叠上下文中的层叠上下文元素在Z轴上的上下顺序。</li>
+<li><p>在其他普通元素中，它描述定义的是这些普通元素在Z轴上的上下顺序。</p>
+</li>
+<li><p>普通元素的层叠等级优先由其所在的层叠上下文决定。</p>
+</li>
+<li>层叠等级的比较只有在当前层叠上下文元素中才有意义;不同层叠上下文中比较层叠等级是没有意义的。</li>
+</ul>
+</li>
 </ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = arr.length <span class="number">-1</span>;i &gt; <span class="number">0</span>; i--)&#123; </span><br><span class="line">     <span class="comment">// 循环遍历，从后面开始遍历不用管位置问题</span></span><br><span class="line">		 <span class="keyword">if</span> (arr.slice(<span class="number">0</span>, i).indexOf(arr[i]) !== <span class="number">-1</span>) &#123; </span><br><span class="line">       <span class="comment">// 元素与前面的所有元素比较，如果前面存在相同的则删掉自身</span></span><br><span class="line">		   arr.splice(i, <span class="number">1</span>)</span><br><span class="line">		  &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="三、forEach-indexOf-新数组-去重法"><a href="#三、forEach-indexOf-新数组-去重法" class="headerlink" title="三、forEach + indexOf + 新数组 去重法"></a>三、<code>forEach</code> + <code>indexOf</code> + 新数组 去重法</h3><p>新建一个空数组，for 循环原数组，判断结果数组是否存在当前元素.</p>
-<p>如果有相同的值则跳过，不相同则push进数组</p>
-<blockquote>
-<ol>
-<li>由于<code>NaN</code> !== <code>NaN</code>  ，因此当多个<code>NaN</code> 存在时，不会去重<code>NaN</code></li>
-<li>无法去重<code>[]</code>, <code>{}</code> </li>
+<ol start="3">
+<li><h5 id="层叠顺序-stacking-order"><a href="#层叠顺序-stacking-order" class="headerlink" title="层叠顺序(stacking order)"></a>层叠顺序(stacking order)</h5><p>层叠顺序表示元素发生层叠时按照特定的顺序规则在Z轴上垂直显示。</p>
+<p><img src="/z-index.png" alt="z-index"></p>
+</li>
 </ol>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> a = []</span><br><span class="line">    arr.forEach(<span class="function"><span class="params">i</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a.indexOf(i) === <span class="number">-1</span>)</span><br><span class="line">          a.push(i)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="四、fillter-indexOf-去重法"><a href="#四、fillter-indexOf-去重法" class="headerlink" title="四、fillter +indexOf 去重法"></a>四、<code>fillter</code> +<code>indexOf</code> 去重法</h3><p>使用数组的<code>filter</code>方法和数组的<code>indexOf</code>方法</p>
-<blockquote>
-<ol>
-<li>无法去重[], {} </li>
-<li>NaN 被删除了</li>
+<h3 id="二、z-index"><a href="#二、z-index" class="headerlink" title="二、z-index"></a>二、z-index</h3><ol>
+<li><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p> z-index 属性设定了一个定位元素及其后代元素或 flex 项目的 z-order (元素的层叠顺序)。 当元素之间重叠的时候， z-index 较大的元素会覆盖较小的元素在上层进行显示（MDN）。</p>
+<p> z-index 属性设置一个定位元素沿 z 轴的位置。z 轴定义为垂直延伸到显示区的轴。如果为正数，则离用户更近，为负数则表示离用户更远。 （w3school）</p>
+<ul>
+<li><p>默认值：auto</p>
+</li>
+<li><p>继承性：no</p>
+</li>
+<li><p>版本：CSS2</p>
+</li>
+<li><p>JS 语法：object.style.zIndex=”1” （auto|number）</p>
+</li>
+<li><p>生效：position: absolute/relative/fixed/sticky</p>
+</li>
+<li><p>浏览器支持：所有主流浏览器都支持 z-index 属性。</p>
+<p><strong>注释：</strong>任何的版本的 Internet Explorer （包括 IE8）都不支持属性值 “inherit”。</p>
+</li>
+</ul>
+</li>
 </ol>
+<ol start="2">
+<li><h5 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z-index: auto|number|initial|inherit;</span><br></pre></td></tr></table></figure>
+<p>| 值       | 描述                         |<br>| :——- | :————————— |<br>| auto     | 默认。堆叠顺序与父元素相等。 |<br>| <em>number</em> | 设置元素的堆叠顺序。         |</p>
+</li>
+</ol>
+<ul>
+<li><p><code>auto</code> (当一个定位元素不设置z-index的时候，默认值就是auto)</p>
+<p>​        盒子不会创建一个新的本地层叠上下文。在当前层叠上下文中生成的盒子的层叠层级和父级盒子相同。</p>
+</li>
+<li><p><code>number</code></p>
+<p>​        <em>number</em>（整型数字）是生成的盒子在当前层叠上下文中的层叠层级。此盒子也会创建一个层叠层级为 0 的本地层叠上下文。</p>
+<p>​        <strong>这意味着后代（元素）的 z-indexes 不与此元素的外部元素的 z-indexes 进行对比。</strong></p>
+</li>
+</ul>
+<ol start="3">
+<li><h5 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h5><p>对于一个已经定位的盒子（元素），z-index 属性指定：</p>
+<ul>
+<li><p>盒子在当前层叠上下文中的层叠层级。</p>
+</li>
+<li><p>盒子是否创建一个本地层叠上下文</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>   <strong>同级</strong> 指的是同一个层叠上下文。当给z-index设置值的时候就会创建层叠上下文，<strong>不同的层叠上下文看最外层的z-index值。</strong></p>
+<p>   具体来说，如果A的z-index比B的z-index小，那么A元素里面的其他元素无论设置多大的值也无法覆盖B里面的元素。</p>
+<ul>
+<li><p><strong>同级</strong> 下，z-index的值越大，层叠顺序越靠前，相同的z-index值的时候，后面的会在前面的层级之上。z-index的值是可以设置0和负数的。</p>
+</li>
+<li><p><strong>同级</strong> 下，z-index: 0 的层级比auto高</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：A元素(子元素A1)，兄弟元素B(子元素B1)。</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;     </span><br><span class="line"> 	<span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item) === index;     </span><br><span class="line">  &#125;)     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="五、filter-hasOwnProperty-去重法"><a href="#五、filter-hasOwnProperty-去重法" class="headerlink" title="五、filter + hasOwnProperty 去重法"></a>五、<code>filter</code> + <code>hasOwnProperty</code> 去重法</h3><p>使用数组的<code>filter</code>方法和对象的<code>hasOwnProperty</code>方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> obj.hasOwnProperty(<span class="keyword">typeof</span> item + item) ? <span class="literal">false</span> : (obj[<span class="keyword">typeof</span> item + item] = <span class="literal">true</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>若 A: 0，B: 1 （A &lt; B）</p>
+<ul>
+<li><p>A1 &lt; B</p>
+</li>
+<li><p>A1 &lt; B1</p>
+</li>
+</ul>
+</li>
+<li><p>若 A: auto，A1 &gt; B （A1直接可以跟B比）</p>
+<ul>
+<li>A1 &gt; B1</li>
+</ul>
+</li>
+<li><p>若A: auto，A1: -1</p>
+<ul>
+<li>A1 &lt; A</li>
+</ul>
+</li>
+<li><p>若A: integer</p>
+<ul>
+<li>A1 &gt; A</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -334,11 +399,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/JS/" rel="tag"># JS</a>
-            
-              <a href="/tags/ES6/" rel="tag"># ES6</a>
-            
-              <a href="/tags/Array/" rel="tag"># Array</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
             
           </div>
         
@@ -348,8 +409,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/16/「ES6学习」解构赋值 (二)/" rel="next" title="「ES6学习」解构赋值（二）">
-                  <i class="fa fa-chevron-left"></i> 「ES6学习」解构赋值（二）
+                <a href="/2019/10/28/JS判断对象是不是数组/" rel="next" title="JS 判断对象是不是数组">
+                  <i class="fa fa-chevron-left"></i> JS 判断对象是不是数组
                 </a>
               
             </div>
@@ -358,8 +419,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/28/JS判断对象是不是数组/" rel="prev" title="JS 判断对象是不是数组">
-                  JS 判断对象是不是数组 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/04/10/ts+vue/" rel="prev" title="TS 入门和Vue实践">
+                  TS 入门和Vue实践 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -503,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-数组去重-一"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 数组去重(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、ES6-Set-去重法"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、ES6 + Set 去重法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、for循环-indexOf-splice-去重法"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、for循环 + indexOf+ splice  去重法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、forEach-indexOf-新数组-去重法"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、forEach + indexOf + 新数组 去重法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、fillter-indexOf-去重法"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、fillter +indexOf 去重法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、filter-hasOwnProperty-去重法"><span class="nav-number">1.0.5.</span> <span class="nav-text">五、filter + hasOwnProperty 去重法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-层叠上下文、层叠等级和层叠顺序"><span class="nav-number">1.</span> <span class="nav-text">一、 层叠上下文、层叠等级和层叠顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#层叠上下文-stacking-context"><span class="nav-number">1.0.1.</span> <span class="nav-text">层叠上下文(stacking context)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#层叠等级-stacking-level，层叠级别-层叠水平"><span class="nav-number">1.0.2.</span> <span class="nav-text">层叠等级(stacking level，层叠级别/层叠水平)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#层叠顺序-stacking-order"><span class="nav-number">1.0.3.</span> <span class="nav-text">层叠顺序(stacking order)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、z-index"><span class="nav-number">2.</span> <span class="nav-text">二、z-index</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">2.0.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#取值"><span class="nav-number">2.0.2.</span> <span class="nav-text">取值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#规则"><span class="nav-number">2.0.3.</span> <span class="nav-text">规则</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
