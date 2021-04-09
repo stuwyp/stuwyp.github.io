@@ -260,7 +260,7 @@
                 
               
 
-              <time title="创建时间：2021-04-10 00:00:00 / 修改时间：00:03:49" itemprop="dateCreated datePublished" datetime="2021-04-10T00:00:00+08:00">2021-04-10</time>
+              <time title="创建时间：2021-04-10 00:00:00 / 修改时间：00:45:06" itemprop="dateCreated datePublished" datetime="2021-04-10T00:00:00+08:00">2021-04-10</time>
             </span>
           
             
@@ -279,269 +279,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="一、TS-快速上手"><a href="#一、TS-快速上手" class="headerlink" title="一、TS 快速上手"></a>一、TS 快速上手</h3><blockquote>
+          <h3 id="一、TS-快速上手"><a href="#一、TS-快速上手" class="headerlink" title="一、TS 快速上手"></a>一、TS 快速上手</h3><blockquote>
 <p> 从 JavaScript 程序员的角度总结思考，快速上手理解 TypeScript。</p>
 </blockquote>
 <h4 id="1-关于TS"><a href="#1-关于TS" class="headerlink" title="1.  关于TS"></a>1.  关于TS</h4><p>TypeScript 是 JavaScript 的一个<strong>超集</strong>，可以编译成纯 JavaScript。TypeScript 在 JavaScript 的基础上添加了可选的<strong>静态类型</strong>和<strong>基于类的面向对象编程</strong>。</p>
-<p>TypeScript 提供最新的和不断发展的 JavaScript 特性，下图显示了 TypeScript 与 ES5、ES2015 和 ES2016 之间的关系：</p>
-<p><img src=".\ts.png" alt="1"></p>
-<h6 id="TypeScript-工作流程"><a href="#TypeScript-工作流程" class="headerlink" title="TypeScript 工作流程"></a>TypeScript 工作流程</h6><p><img src=".\ts2.jpg" alt="2"></p>
-<blockquote>
-<p>注意：<strong>TypeScript 编译的时候即使报错了，还是会生成编译结果</strong>，我们仍然可以使用这个编译之后的文件。</p>
-</blockquote>
-<h4 id="2-基础"><a href="#2-基础" class="headerlink" title="2.  基础"></a>2.  基础</h4><h5 id="2-1-基本语法"><a href="#2-1-基本语法" class="headerlink" title="2.1 基本语法"></a>2.1 基本语法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:&lt;TypeAnnotation&gt;</span><br></pre></td></tr></table></figure>
-<p>TypeScript的基本类型语法是在变量之后使用冒号进行类型标识，这种语法也揭示了TypeScript的类型声明实际上是可选的。</p>
-<h6 id="1-原始值类型"><a href="#1-原始值类型" class="headerlink" title="(1) 原始值类型"></a>(1) 原始值类型</h6><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bool: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">let</span> num: <span class="built_in">number</span> = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">let</span> str: <span class="built_in">string</span> = <span class="string">'sip'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// var bool = false;</span></span><br><span class="line"><span class="comment">// var num = 10;</span></span><br><span class="line"><span class="comment">// var str = 'sip';</span></span><br></pre></td></tr></table></figure>
-<h6 id="2-特殊类型"><a href="#2-特殊类型" class="headerlink" title="(2) 特殊类型"></a>(2) 特殊类型</h6><ul>
-<li><p>Any</p>
-<p>任意值（Any）用来表示允许赋值为任意类型。 在任意值上访问任何属性 / 调用任何方法都是<strong>允许</strong>的</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> notSure: <span class="built_in">any</span> = <span class="string">'any'</span>;</span><br><span class="line">notSure = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>未声明类型的变量</p>
-</blockquote>
-<p> 变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型：  变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> something;</span><br><span class="line"><span class="comment">// 等同于 let something: any;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Void</p>
-<p> <code>void</code> 类型像是与 <code>any</code> 类型相反，它表示没有任何类型 ；在 TypeScript 中，可以用 <code>void</code> 表示没有任何返回值的函数：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">alertName</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">    alert(<span class="string">'My name is Tom'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>声明一个 <code>void</code> 类型的变量没有什么用，因为你只能将它赋值为 <code>undefined</code> 和 <code>null</code>：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unusable: <span class="built_in">void</span> = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Null 和 Undefined</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<p>与 <code>void</code> 的区别是，<code>undefined</code> 和 <code>null</code> 是所有类型的子类型。也就是说 <code>undefined</code> 类型的变量，可以赋值给 <code>number</code> 类型的变量：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样不会报错</span></span><br><span class="line"><span class="keyword">let</span> num: <span class="built_in">number</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="comment">// 这样也不会报错</span></span><br><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> num: <span class="built_in">number</span> = u;</span><br></pre></td></tr></table></figure>
-<p>而 <code>void</code> 类型的变量不能赋值给 <code>number</code> 类型的变量：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> u: <span class="built_in">void</span>;</span><br><span class="line"><span class="keyword">let</span> num: <span class="built_in">number</span> = u;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Type 'void' is not assignable to type 'number'.</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="2-2-类型推论"><a href="#2-2-类型推论" class="headerlink" title="2.2 类型推论"></a>2.2 类型推论</h5><blockquote>
-<p>如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。</p>
-</blockquote>
-<p>以下代码虽然没有指定类型，但是会在编译的时候报错：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="string">'seven'</span>;</span><br><span class="line">num = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// error TS2322: Type '7' is not assignable to type 'string'.</span></span><br></pre></td></tr></table></figure>
-<p>事实上，它等价于：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num: <span class="built_in">string</span> = <span class="string">'seven'</span>;</span><br><span class="line">num = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// error TS2322: Type '7' is not assignable to type 'string'.</span></span><br></pre></td></tr></table></figure>
-<p>TypeScript 会在没有明确的指定类型的时候推测出一个类型，这就是<strong>类型推论</strong>。</p>
-<p><strong>如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 <code>any</code> 类型而完全不被类型检查</strong>：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num;</span><br><span class="line">num = <span class="string">'seven'</span>;</span><br><span class="line">num = <span class="number">7</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="2-3-联合类型"><a href="#2-3-联合类型" class="headerlink" title="2.3 联合类型"></a>2.3 联合类型</h5><p>联合类型（Union Types）表示取值可以为多种类型中的一种。</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strNum: <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line">strNum = <span class="string">'seven'</span>;</span><br><span class="line">strNum = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> strNum2: <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line">strNum2 = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// error TS2322: Type 'true' is not assignable to type 'string | number'</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-4-对象的类型——接口"><a href="#2-4-对象的类型——接口" class="headerlink" title="2.4 对象的类型——接口"></a>2.4 对象的类型——接口</h5><p>在 TypeScript 中，我们使用接口（Interfaces）来定义对象的类型。</p>
-<ul>
-<li><p>例子</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接口 Person (接口一般首字母大写)</span></span><br><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man: Person = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>定义的变量比接口多/少了一些属性都是不允许的，<strong>赋值的时候，变量的形状必须和接口的形状保持一致</strong></p>
-<ul>
-<li><p><strong>(1) 可选属性</strong></p>
-<p> 可选属性的含义是该属性可以不存在，<strong>但不允许添加未定义的属性</strong>：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    age?: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man: Person = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man2: Person = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    age: <span class="number">25</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man3: Person = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    tel: <span class="string">'1370000000'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// error TS2322: Type '&#123; name: string; tel: string; &#125;' is not assignable to type 'Person'.</span></span><br><span class="line"><span class="comment">// Object literal may only specify known properties, and 'tel' does not exist in type 'Person'.</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>(2) 任意属性</strong></p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    age?: <span class="built_in">number</span>;</span><br><span class="line">    [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man: Person = &#123;</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    gender: <span class="string">'male'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>使用 <code>[propName: string]</code> 定义了任意属性取 <code>string</code> 类型的值。</p>
-<blockquote>
-<ol>
-<li><p>一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集</p>
-</li>
-<li><p>一个接口中只能定义一个任意属性。如果接口中有多个类型的属性，则可以在任意属性中使用联合类型：</p>
-</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li><p><strong>(3) 只读属性</strong></p>
- <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">    readonly id: <span class="built_in">number</span>;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    age?: <span class="built_in">number</span>;</span><br><span class="line">    [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man: Person = &#123;</span><br><span class="line">    id: <span class="number">99999</span>,</span><br><span class="line">    name: <span class="string">'Tom'</span>,</span><br><span class="line">    gender: <span class="string">'male'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">man.id = <span class="number">10000</span>;</span><br><span class="line"><span class="comment">// error TS2540: Cannot assign to 'id' because it is a read-only property.</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="2-5-数组的类型"><a href="#2-5-数组的类型" class="headerlink" title="2.5 数组的类型"></a>2.5 数组的类型</h5><ul>
-<li><p>类型 + 方括号</p>
-<p>数组的项中<strong>不允许</strong>出现其他的类型：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fibonacci: <span class="built_in">number</span>[] = [<span class="number">1</span>, <span class="string">'1'</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Type 'string' is not assignable to type 'number'.</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组泛型</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fibonacci: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用接口表示数组</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> NumberArray &#123;</span><br><span class="line">    [index: <span class="built_in">number</span>]: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> fibonacci: NumberArray = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>类数组</p>
-<p>类数组（Array-like Object）不是数组类型，比如 <code>arguments</code>：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> args: &#123;</span><br><span class="line">        [index: <span class="built_in">number</span>]: <span class="built_in">any</span>;</span><br><span class="line">        length: <span class="built_in">number</span>;</span><br><span class="line">        callee: <span class="built_in">Function</span>;</span><br><span class="line">    &#125; = <span class="built_in">arguments</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>any 在数组中的应用</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list: <span class="built_in">any</span>[] = [<span class="string">'1'</span>, <span class="number">1</span>, &#123; key: <span class="string">'value'</span> &#125;];</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="2-6-函数的类型"><a href="#2-6-函数的类型" class="headerlink" title="2.6 函数的类型"></a>2.6 函数的类型</h5><ul>
-<li><p>函数声明</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注意，输入多余的（或者少于要求的）参数，是不被允许的：</span></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// error TS2554: Expected 2 arguments, but got 3.</span></span><br><span class="line">sum(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// error TS2554: Expected 2 arguments, but got 1.</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数表达式</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySum = <span class="function"><span class="keyword">function</span> (<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上面的代码只对等号右侧的匿名函数进行了类型定义，而等号左边的 <code>mySum</code>，是通过赋值操作进行类型推论而推断出来的。</p>
-</li>
-</ul>
-<p>  如果需要我们手动给 <code>mySum</code> 添加类型，则应该是这样：</p>
-  <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> mySum: <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span> = <span class="function"><span class="keyword">function</span> (<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意不要混淆了 TypeScript 中的 <code>=&gt;</code> 和 ES6 中的 <code>=&gt;</code>。</p>
-<p>在 TypeScript 的类型定义中，<strong><code>=&gt;</code> 用来表示函数的定义</strong>，左边是输入类型，需要用括号括起来，右边是输出类型。</p>
-</blockquote>
-<ul>
-<li><p>用接口定义函数的形状</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> SearchFunc &#123;</span><br><span class="line">    (source: <span class="built_in">string</span>, subString: <span class="built_in">string</span>): <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> mySearch: SearchFunc;</span><br><span class="line">mySearch = <span class="function"><span class="keyword">function</span>(<span class="params">source: <span class="built_in">string</span>, subString: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> source.search(subString) !== <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>采用函数表达式|接口定义函数的方式时，对等号左侧进行类型限制，可以保证以后对函数名赋值时保证参数个数、参数类型、返回值类型不变。</p>
-</li>
-</ul>
-<ul>
-<li><p>可选参数</p>
-<p>前面提到，输入多余的（或者少于要求的）参数，是不允许的。那么如何定义可选的参数呢？</p>
-<p>与接口中的可选属性类似，我们用 <code>?</code> 表示可选的参数：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildName</span>(<span class="params">firstName: <span class="built_in">string</span>, lastName?: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (lastName) &#123;</span><br><span class="line">        <span class="keyword">return</span> firstName + <span class="string">' '</span> + lastName;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> firstName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tomcat = buildName(<span class="string">'Tom'</span>, <span class="string">'Cat'</span>);</span><br><span class="line"><span class="keyword">let</span> tom = buildName(<span class="string">'Tom'</span>);</span><br></pre></td></tr></table></figure>
-<p>需要注意的是，可选参数必须接在必需参数后面。换句话说，<strong>可选参数后面不允许再出现必需参数了</strong>：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildName</span>(<span class="params">firstName?: <span class="built_in">string</span>, lastName: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (firstName) &#123;</span><br><span class="line">        <span class="keyword">return</span> firstName + <span class="string">' '</span> + lastName;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> lastName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tomcat = buildName(<span class="string">'Tom'</span>, <span class="string">'Cat'</span>);</span><br><span class="line"><span class="keyword">let</span> tom = buildName(<span class="literal">undefined</span>, <span class="string">'Tom'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// error TS1016: A required parameter cannot follow an optional parameter.</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参数默认值</p>
-<p>TypeScript 会将添加了默认值的参数识别为可选参数，此时就不受「可选参数必须接在必需参数后面」的限制</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildName</span>(<span class="params">firstName: <span class="built_in">string</span> = 'Tom', lastName: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> firstName + <span class="string">' '</span> + lastName;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tomcat = buildName(<span class="string">'Tom'</span>, <span class="string">'Cat'</span>);</span><br><span class="line"><span class="keyword">let</span> cat = buildName(<span class="literal">undefined</span>, <span class="string">'Cat'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重载</p>
-<p>重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。</p>
-</li>
-</ul>
-<h5 id="2-7-声明文件"><a href="#2-7-声明文件" class="headerlink" title="2.7 声明文件"></a>2.7 声明文件</h5><p>声明文件必需以 <code>.d.ts</code> 为后缀。</p>
-<p>一般来说，ts 会解析项目中所有的 <code>*.ts</code> 文件，当然也包含以 <code>.d.ts</code> 结尾的文件。</p>
-<p>declare  仅用来定义类型</p>
-<ul>
-<li>declare var 声明全局变量    (declare let 和 declare const)</li>
-<li>declare function 声明全局方法</li>
-<li>declare class 声明全局类</li>
-<li>declare enum 声明全局枚举类型</li>
-<li>declare namespace 声明（含有子属性的）全局对象</li>
-<li>interface 和 type 声明全局类型</li>
-<li>export 导出变量</li>
-<li>export namespace 导出（含有子属性的）对象</li>
-<li>export default ES6 默认导出</li>
-<li>export = commonjs 导出模块</li>
-<li>export as namespace UMD 库声明全局变量</li>
-<li>declare global 扩展全局变量</li>
-<li>declare module 扩展模块</li>
-<li>/// <reference> 三斜线指令</reference></li>
-</ul>
-<h4 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h4><h5 id="3-1-元组-Tuple"><a href="#3-1-元组-Tuple" class="headerlink" title="3.1 元组 Tuple"></a>3.1 元组 Tuple</h5><p>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strNumberList: [<span class="built_in">string</span>, <span class="built_in">number</span>];</span><br><span class="line"></span><br><span class="line">strNumberList = [<span class="string">'hello'</span>, <span class="number">10</span>]; <span class="comment">// OK</span></span><br><span class="line">strNumberList = [<span class="number">10</span>, <span class="string">'hello'</span>]; <span class="comment">// webstorm会报红， 编译会出错</span></span><br></pre></td></tr></table></figure>
-<h5 id="3-2-枚举"><a href="#3-2-枚举" class="headerlink" title="3.2 枚举"></a>3.2 枚举</h5><p><code>enum</code>类型是对JavaScript标准数据类型的一个补充。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Color &#123;Red, Green, Blue&#125;		<span class="comment">// 默认从0开始编号</span></span><br><span class="line"><span class="keyword">let</span> color: Color = Color.Green;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编译后</span></span><br><span class="line"><span class="keyword">var</span> Color;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">Color</span>) </span>&#123;</span><br><span class="line">    Color[Color[<span class="string">"Red"</span>] = <span class="number">0</span>] = <span class="string">"Red"</span>;</span><br><span class="line">    Color[Color[<span class="string">"Green"</span>] = <span class="number">1</span>] = <span class="string">"Green"</span>;</span><br><span class="line">    Color[Color[<span class="string">"Blue"</span>] = <span class="number">2</span>] = <span class="string">"Blue"</span>;</span><br><span class="line">&#125;)(Color || (Color = &#123;&#125;));</span><br><span class="line"><span class="keyword">var</span> color = Color.Green;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// enum Color &#123;Red = 1, Green, Blue&#125;  指定从1开始编号</span></span><br><span class="line"><span class="comment">// enum Color &#123;Red = 1, Green = 2, Blue = 4&#125;	手动赋值</span></span><br></pre></td></tr></table></figure>
-<h5 id="3-3-泛型"><a href="#3-3-泛型" class="headerlink" title="3.3  泛型"></a>3.3  泛型</h5><p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
-<h3 id="二、TS-在-Vue2-x-的实践"><a href="#二、TS-在-Vue2-x-的实践" class="headerlink" title="二、TS 在 Vue2.x 的实践"></a>二、TS 在 Vue2.x 的实践</h3><h4 id="1-构建"><a href="#1-构建" class="headerlink" title="1. 构建"></a>1. 构建</h4><h6 id="通过官方脚手架构建安装-Vue-CLI-3"><a href="#通过官方脚手架构建安装-Vue-CLI-3" class="headerlink" title="通过官方脚手架构建安装 (Vue CLI 3)"></a>通过官方脚手架构建安装 (<a href="https://github.com/vuejs/vue-cli" target="_blank" rel="noopener">Vue CLI 3</a>)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 1. 如果没有安装 Vue CLI 就先安装</span><br><span class="line"></span><br><span class="line">npm install --global @vue/cli</span><br><span class="line"></span><br><span class="line">// 2. 创建一个新工程，并选择 &quot;Manually select features (手动选择特性)&quot; 选项</span><br><span class="line"></span><br><span class="line">vue create project-name</span><br></pre></td></tr></table></figure>
-<p>然后，命令行会要求选择预设。使用箭头键选择 Manually select features。</p>
-<p>接下来，只需确保选择了 TypeScript 和 Babel 选项，然后配置其余设置，设置完成 vue cli 就会开始安装依赖并设置项目 。</p>
-<p><img src="C:\Users\王云鹏\AppData\Roaming\Typora\typora-user-images\image-20201018194452918.png" alt="image-20201018194452918"></p>
-<h4 id="2-目录解析"><a href="#2-目录解析" class="headerlink" title="2. 目录解析"></a>2. 目录解析</h4><p>安装完成打开项目，目录结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">|-- project-name</span><br><span class="line">    |-- .browserslistrc     # browserslistrc 配置文件 (用于支持 Autoprefixer)</span><br><span class="line">    |-- .gitignore</span><br><span class="line">    |-- .eslintrc.js        # eslint 相关配置</span><br><span class="line">    |-- babel.config.js     # babel-loader 配置</span><br><span class="line">    |-- package-lock.json</span><br><span class="line">    |-- package.json        # package.json 依赖</span><br><span class="line">    |-- postcss.config.js   # postcss 配置</span><br><span class="line">    |-- README.md</span><br><span class="line">    |-- tsconfig.json       # typescript 配置</span><br><span class="line">    |-- vue.config.js       # vue-cli 配置</span><br><span class="line">    |-- public              # 静态资源 (会被直接复制)</span><br><span class="line">    |   |-- favicon.ico     # favicon图标</span><br><span class="line">    |   |-- index.html      # html模板</span><br><span class="line">    |-- src</span><br><span class="line">    |   |-- App.vue         # 入口页面</span><br><span class="line">    |   |-- main.ts         # 入口文件 加载组件 初始化等</span><br><span class="line">    |   |-- shims-tsx.d.ts</span><br><span class="line">    |   |-- shims-vue.d.ts</span><br><span class="line">    |   |-- assets          # 主题 字体等静态资源 (由 webpack 处理加载)</span><br><span class="line">    |   |-- components      # 全局组件</span><br><span class="line">    |   |-- router          # 路由</span><br><span class="line">    |   |-- store           # 全局 vuex store</span><br><span class="line">    |   |-- styles          # 全局样式</span><br><span class="line">    |   |-- views           # 所有页面</span><br></pre></td></tr></table></figure>
-<p>ts构建的项目目录与之前用<code>js</code>构建的区别不大，区别主要是之前 js 后缀的现在改为了ts后缀，还多了<code>tsconfig.json</code>、<code>shims-tsx.d.ts</code>、<code>shims-vue.d.ts</code>这几个文件：</p>
-<ul>
-<li><code>tsconfig.json</code>: typescript配置文件,主要用于指定待编译的文件和定义编译选项</li>
-<li><code>shims-tsx.d.ts</code>: 允许.tsx 结尾的文件，在 Vue 项目中编写 jsx 代码</li>
-<li><code>shims-vue.d.ts</code>: 主要用于 TypeScript 识别.vue 文件，Ts 默认并不支持导入 vue 文件</li>
-</ul>
-<h6 id="tsconfig-json-推荐配置"><a href="#tsconfig-json-推荐配置" class="headerlink" title="tsconfig.json`推荐配置"></a>tsconfig.json`推荐配置</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// tsconfig.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    // 与 Vue 的浏览器支持保持一致</span><br><span class="line">    "target": "es5",</span><br><span class="line">    // 这可以对 `this` 上的数据 property 进行更严格的推断</span><br><span class="line">    "strict": true,</span><br><span class="line">    // 如果使用 webpack 2+ 或 rollup，可以利用 tree-shake:</span><br><span class="line">    "module": "es2015",</span><br><span class="line">    "moduleResolution": "node"</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意: 需要引入 <code>strict: true</code> (或者至少 <code>noImplicitThis: true</code>，这是 <code>strict</code> 模式的一部分) 以利用组件方法中 <code>this</code> 的类型检查，否则它会始终被看作 <code>any</code> 类型。</p>
-<h4 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a><strong>3. 使用</strong></h4><h5 id="3-1-在-vue-中使用-typescript-常用的几个库"><a href="#3-1-在-vue-中使用-typescript-常用的几个库" class="headerlink" title="3.1 在 vue 中使用 typescript 常用的几个库"></a>3.1 在 vue 中使用 typescript 常用的几个库</h5><ul>
-<li><p><code>vue-class-component</code>:</p>
-<p>是一个 Class Decorator，该库通过装饰器模式实现了 vue 的 ts 适配，也是官方推荐的使用 ts 方式</p>
-</li>
-<li><p><code>vue-property-decorator</code>:</p>
-<p>是在 <code>vue-class-component</code> 基础上进行了修改与扩充</p>
-</li>
-<li><p><code>vuex-module-decorators</code>:</p>
-<p>是在 typeScript 环境下中使用 vuex 的一种解决方案</p>
-</li>
-</ul>
-<h5 id="3-2-上手"><a href="#3-2-上手" class="headerlink" title="3.2 上手"></a>3.2 上手</h5><p>要让 TypeScript 正确推断 Vue 组件选项中的类型，我们需要使用 <code>Vue.component</code> 或 <code>Vue.extend</code> 定义组件。</p>
-<h5 id="3-2-1-vue-class-component"><a href="#3-2-1-vue-class-component" class="headerlink" title="3.2.1 vue-class-component"></a>3.2.1 vue-class-component</h5><p> vue-class-component 对 <code>Vue</code> 组件进行了一层封装，让 <code>Vue</code> 组件语法在结合了 <code>TypeScript</code> 语法之后更加扁平化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Component from &apos;vue-class-component&apos;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    propMessage: String</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">export default class App extends Vue &#123;</span><br><span class="line">  // initial data</span><br><span class="line">  msg = 123</span><br><span class="line"></span><br><span class="line">  // use prop values for initial data</span><br><span class="line">  helloMsg = &apos;Hello, &apos; + this.propMessage</span><br><span class="line"></span><br><span class="line">  // lifecycle hook</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    this.greet()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // computed</span><br><span class="line">  get computedMsg () &#123;</span><br><span class="line">    return &apos;computed &apos; + this.msg</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // method</span><br><span class="line">  greet () &#123;</span><br><span class="line">    alert(&apos;greeting: &apos; + this.msg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="3-2-2-vue-property-decorator"><a href="#3-2-2-vue-property-decorator" class="headerlink" title="3.2.2 vue-property-decorator"></a>3.2.2 vue-property-decorator</h5><p>vue-property-decorator 是在 <code>vue-class-component</code> 上增强了更多的结合 <code>Vue</code> 特性的装饰器，新增了这 7 个装饰器：</p>
-<ul>
-<li><code>@Emit</code></li>
-<li><code>@Inject</code></li>
-<li><code>@Model</code></li>
-<li><code>@Prop</code></li>
-<li><code>@Provide</code></li>
-<li><code>@Watch</code></li>
-<li><code>@Component</code>  (从 <code>vue-class-component</code> 继承)</li>
-</ul>
-<h6 id="1-组件声明"><a href="#1-组件声明" class="headerlink" title="(1) 组件声明"></a>(1) 组件声明</h6><ul>
-<li>引入组件：和原生写法一致，都需要先引入再注册</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; Component, Vue &#125; from &apos;vue-property-decorator&apos;;</span><br><span class="line">import HelloWorld from &apos;./components/HelloWorld.vue&apos;;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    HelloWorld,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">export default class App extends Vue &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h6 id="2-响应式data-和-Prop声明"><a href="#2-响应式data-和-Prop声明" class="headerlink" title="(2) 响应式data 和 Prop声明"></a>(2) 响应式data 和 Prop声明</h6><ul>
-<li><p>data</p>
-<p>类语法中可以直接定义为类的实例属性作为组件的响应式数据</p>
-</li>
-<li><p>prop</p>
-<p>类语法实现组件 props 定义是通过装饰器<code>@Prop</code>实现</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; Component, Prop, Vue &#125; from &apos;vue-property-decorator&apos;;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">export default class HelloWorld extends Vue &#123;</span><br><span class="line">  private name: string;</span><br><span class="line">	@Prop() private msg!: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>!: 表示一定存在，?: 表示可能不存在。这两种在语法上叫赋值断言</li>
-<li>@Prop(options: (PropOptions | Constructor[] | Constructor) = {})<ul>
-<li>PropOptions，可以使用以下选项：type，default，required，validator</li>
-<li>Constructor[]，指定 prop 的可选类型</li>
-<li>Constructor，例如 String，Number，Boolean 等，指定 prop 的类型</li>
-</ul>
-</li>
-</ul>
-<h6 id="3-生命周期函数"><a href="#3-生命周期函数" class="headerlink" title="(3) 生命周期函数"></a>(3) 生命周期函数</h6><p>生命周期钩子的使用和原先使用的区别：在类语法中直接将生命周期生命为方法(方法名称和生命周期名称一致)。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> created(): <span class="built_in">void</span> &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'created'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> mounted(): <span class="built_in">void</span> &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'mounted'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="4-Watch-监听属性"><a href="#4-Watch-监听属性" class="headerlink" title="(4) Watch 监听属性"></a><strong>(4) Watch 监听属性</strong></h6><p>类语法实现响应式的数据监听，是由 <code>vue-property-decorator</code> 依赖提供 <code>@Watch</code> 装饰器来完成。</p>
-<ul>
-<li><p>@Watch(path: string, options: WatchOptions = {})</p>
-</li>
-<li><p>其中，options 包含两个属性</p>
-</li>
-<li><ul>
-<li>immediate?:boolean    侦听开始之后是否立即调用该回调函数</li>
-<li>deep?:boolean              被侦听的对象的属性被改变时，是否调用该回调函数</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Vue, Component &#125; <span class="keyword">from</span> <span class="string">'vue-property-decorator'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> Index <span class="keyword">extends</span> Vue &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//watch定义，其中Wacth装饰器第一个参数：响应式数据字符串(也可以定义为'a.b');</span></span><br><span class="line">  <span class="comment">//第二个参数options成员[immediate,deep]分别对应的是原生的用法</span></span><br><span class="line">  <span class="meta">@Watch</span>(<span class="string">'$route'</span>, &#123; immediate: <span class="literal">true</span> &#125;)</span><br><span class="line">  <span class="keyword">private</span> changeRouter(val: Route, oldVal: Route) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'$route watcher: '</span>, val, oldVal);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="5-computed-计算属性"><a href="#5-computed-计算属性" class="headerlink" title="(5) computed 计算属性"></a><strong>(5) computed 计算属性</strong></h6><p>类语法中的计算属性的实现，是通过 get 取值函数。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">get</span> getName() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'computed '</span> + <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>getName 是计算后的值，name 是被监听的值</p>
-<h6 id="6-method"><a href="#6-method" class="headerlink" title="(6) method"></a>(6) method</h6><p>在类语法实现原生 vue 的方法的方式，即通过直接定义类方法成员。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> clickFunc(): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="7-事件触发"><a href="#7-事件触发" class="headerlink" title="(7) 事件触发"></a>(7) 事件触发</h6><p>ts 环境下 vue 的事件触发方式和 js 环境下是一致的，区别只是事件回调定义的地方不同（ts 定义为类的实例方法，js 定义在 methods 属性中）。</p>
-<h6 id="8-ref"><a href="#8-ref" class="headerlink" title="(8) ref"></a>(8) ref</h6><p>类语法中使用 ref 需要借助<code>vue-property-decorator</code>提供的<code>@Ref</code>装饰器</p>
-<h6 id="9-mixins"><a href="#9-mixins" class="headerlink" title="(9) mixins"></a>(9) mixins</h6><p>类语法使用 mixins 需要继承<code>vue-property-decorator</code>提供的 Mixins 函数所生成的类。</p>
-<p>Mixins 函数的参数是 Vue 实例类</p>
-<h6 id="10-slots-和-scopedSlots"><a href="#10-slots-和-scopedSlots" class="headerlink" title="(10) slots 和 scopedSlots"></a>(10) slots 和 scopedSlots</h6><p>slots 和 scopedSlots 的使用方式和原生 vue 保持一致。</p>
-<h3 id="三、tsconfig-json"><a href="#三、tsconfig-json" class="headerlink" title="三、tsconfig.json"></a>三、tsconfig.json</h3><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>如果一个目录下存在一个 <code>tsconfig.json</code> 文件，那么它意味着这个目录是TypeScript项目的根目录。</p>
-<p><code>tsconfig.json</code>文件中指定了用来编译这个项目的根文件和编译选项。 一个项目可以通过以下方式之一来编译：</p>
-<h5 id="使用tsconfig-json"><a href="#使用tsconfig-json" class="headerlink" title="使用tsconfig.json"></a>使用tsconfig.json</h5><ul>
-<li>不带任何输入文件的情况下调用<code>tsc</code>，编译器会从当前目录开始去查找<code>tsconfig.json</code>文件，逐级向上搜索父目录。</li>
-<li>不带任何输入文件的情况下调用<code>tsc</code>，且使用命令行参数<code>--project</code>（或<code>-p</code>）指定一个包含<code>tsconfig.json</code>文件的目录。</li>
-</ul>
-<p>当命令行上指定了输入文件时，<code>tsconfig.json</code>文件会被忽略。</p>
-<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    // 编译选项</span><br><span class="line">  "compilerOptions": &#123;</span><br><span class="line">    // 编译输出目标 ES 版本</span><br><span class="line">    "target": "esnext",</span><br><span class="line">    // 采用的模块系统</span><br><span class="line">    "module": "es2015",</span><br><span class="line">    // 以严格模式解析</span><br><span class="line">    "strict": true,</span><br><span class="line">    "jsx": "preserve",</span><br><span class="line">    // 如何处理模块</span><br><span class="line">    "moduleResolution": "node",</span><br><span class="line">    // 启用装饰器</span><br><span class="line">    "experimentalDecorators": true,</span><br><span class="line">    // 允许从没有设置默认导出的模块中默认导入</span><br><span class="line">    "allowSyntheticDefaultImports": true,</span><br><span class="line">    // 定义一个变量就必须给它一个初始值</span><br><span class="line">    "strictPropertyInitialization" : false,</span><br><span class="line">    // 允许编译javascript文件</span><br><span class="line">    "allowJs": true,</span><br><span class="line">    // 是否包含可以用于 debug 的 sourceMap</span><br><span class="line">    "sourceMap": true,</span><br><span class="line">    // 忽略 this 的类型检查, Raise error on this expressions with an implied any type.</span><br><span class="line">    "noImplicitThis": false,</span><br><span class="line">    // 解析非相对模块名的基准目录</span><br><span class="line">    "baseUrl": ".",</span><br><span class="line">    // 给错误和消息设置样式，使用颜色和上下文。</span><br><span class="line">    "pretty": true,</span><br><span class="line">    // 设置引入的定义文件</span><br><span class="line">    "types": ["webpack-env", "mocha", "chai"],</span><br><span class="line">    // 指定特殊模块的路径</span><br><span class="line">    "paths": &#123;</span><br><span class="line">      "@/*": ["src/*"]</span><br><span class="line">    &#125;,</span><br><span class="line">    // 编译过程中需要引入的库文件的列表</span><br><span class="line">    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]</span><br><span class="line">  &#125;,</span><br><span class="line">  // ts 管理的文件</span><br><span class="line">  "include": [</span><br><span class="line">    "src/**/*.ts",</span><br><span class="line">    "src/**/*.tsx",</span><br><span class="line">    "src/**/*.vue",</span><br><span class="line">    "tests/**/*.ts",</span><br><span class="line">    <span class="string">"tests/**/*.tsx"</span></span><br><span class="line">  ],</span><br><span class="line">  // ts 排除的文件</span><br><span class="line">  "exclude": ["node_modules"]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <code>&quot;compilerOptions&quot;</code>可以被忽略，这时编译器会使用默认值。在这里查看完整的<a href="https://www.tslang.cn/docs/handbook/compiler-options.html" target="_blank" rel="noopener">编译器选项</a>列表。</p>
-<p><code>&quot;files&quot;</code>指定一个包含相对或绝对文件路径的列表。</p>
-<p><code>&quot;include&quot;</code>和<code>&quot;exclude&quot;</code>属性指定一个文件glob匹配模式列表。 支持的glob通配符有：</p>
-<ul>
-<li><code>*</code> 匹配0或多个字符（不包括目录分隔符）</li>
-<li><code>?</code> 匹配一个任意字符（不包括目录分隔符）</li>
-<li><code>**/</code> 递归匹配任意子目录</li>
-</ul>
-
+<p>TypeScript 提供最新的和不断发展的 JavaScript 特性。</p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/04/10/ts+vue/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -599,7 +350,7 @@
                 
               
 
-              <time title="创建时间：2021-04-10 00:00:00 / 修改时间：00:03:42" itemprop="dateCreated datePublished" datetime="2021-04-10T00:00:00+08:00">2021-04-10</time>
+              <time title="创建时间：2021-04-10 00:00:00 / 修改时间：00:44:38" itemprop="dateCreated datePublished" datetime="2021-04-10T00:00:00+08:00">2021-04-10</time>
             </span>
           
             
@@ -618,8 +369,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <h3 id="一、-层叠上下文、层叠等级和层叠顺序"><a href="#一、-层叠上下文、层叠等级和层叠顺序" class="headerlink" title="一、 层叠上下文、层叠等级和层叠顺序"></a>一、 层叠上下文、层叠等级和层叠顺序</h3><ol>
+          <h3 id="一、-层叠上下文、层叠等级和层叠顺序"><a href="#一、-层叠上下文、层叠等级和层叠顺序" class="headerlink" title="一、 层叠上下文、层叠等级和层叠顺序"></a>一、 层叠上下文、层叠等级和层叠顺序</h3><ol>
 <li><h5 id="层叠上下文-stacking-context"><a href="#层叠上下文-stacking-context" class="headerlink" title="层叠上下文(stacking context)"></a>层叠上下文(stacking context)</h5><p>层叠上下文是HTML中一个三维的概念。在CSS2.1规范中，每个盒模型的位置是三维的，分别是平面画布上的X轴，Y轴以及表示层叠的Z轴。</p>
 <p>一般情况下，元素在页面上沿X轴Y轴平铺，我们察觉不到它们在Z轴上的层叠关系。而一旦元素发生堆叠，这时就能发现某个元素可能覆盖了另一个元素或者被另一个元素覆盖。</p>
 </li>
@@ -635,93 +385,15 @@
 </ul>
 </li>
 </ol>
-<ol start="3">
-<li><h5 id="层叠顺序-stacking-order"><a href="#层叠顺序-stacking-order" class="headerlink" title="层叠顺序(stacking order)"></a>层叠顺序(stacking order)</h5><p>层叠顺序表示元素发生层叠时按照特定的顺序规则在Z轴上垂直显示。</p>
-<p><img src="/z-index.png" alt="z-index"></p>
-</li>
-</ol>
-<h3 id="二、z-index"><a href="#二、z-index" class="headerlink" title="二、z-index"></a>二、z-index</h3><ol>
-<li><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p> z-index 属性设定了一个定位元素及其后代元素或 flex 项目的 z-order (元素的层叠顺序)。 当元素之间重叠的时候， z-index 较大的元素会覆盖较小的元素在上层进行显示（MDN）。</p>
-<p> z-index 属性设置一个定位元素沿 z 轴的位置。z 轴定义为垂直延伸到显示区的轴。如果为正数，则离用户更近，为负数则表示离用户更远。 （w3school）</p>
-<ul>
-<li><p>默认值：auto</p>
-</li>
-<li><p>继承性：no</p>
-</li>
-<li><p>版本：CSS2</p>
-</li>
-<li><p>JS 语法：object.style.zIndex=”1” （auto|number）</p>
-</li>
-<li><p>生效：position: absolute/relative/fixed/sticky</p>
-</li>
-<li><p>浏览器支持：所有主流浏览器都支持 z-index 属性。</p>
-<p><strong>注释：</strong>任何的版本的 Internet Explorer （包括 IE8）都不支持属性值 “inherit”。</p>
-</li>
-</ul>
-</li>
-</ol>
-<ol start="2">
-<li><h5 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z-index: auto|number|initial|inherit;</span><br></pre></td></tr></table></figure>
-<p>| 值       | 描述                         |<br>| :——- | :————————— |<br>| auto     | 默认。堆叠顺序与父元素相等。 |<br>| <em>number</em> | 设置元素的堆叠顺序。         |</p>
-</li>
-</ol>
-<ul>
-<li><p><code>auto</code> (当一个定位元素不设置z-index的时候，默认值就是auto)</p>
-<p>​        盒子不会创建一个新的本地层叠上下文。在当前层叠上下文中生成的盒子的层叠层级和父级盒子相同。</p>
-</li>
-<li><p><code>number</code></p>
-<p>​        <em>number</em>（整型数字）是生成的盒子在当前层叠上下文中的层叠层级。此盒子也会创建一个层叠层级为 0 的本地层叠上下文。</p>
-<p>​        <strong>这意味着后代（元素）的 z-indexes 不与此元素的外部元素的 z-indexes 进行对比。</strong></p>
-</li>
-</ul>
-<ol start="3">
-<li><h5 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h5><p>对于一个已经定位的盒子（元素），z-index 属性指定：</p>
-<ul>
-<li><p>盒子在当前层叠上下文中的层叠层级。</p>
-</li>
-<li><p>盒子是否创建一个本地层叠上下文</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>   <strong>同级</strong> 指的是同一个层叠上下文。当给z-index设置值的时候就会创建层叠上下文，<strong>不同的层叠上下文看最外层的z-index值。</strong></p>
-<p>   具体来说，如果A的z-index比B的z-index小，那么A元素里面的其他元素无论设置多大的值也无法覆盖B里面的元素。</p>
-<ul>
-<li><p><strong>同级</strong> 下，z-index的值越大，层叠顺序越靠前，相同的z-index值的时候，后面的会在前面的层级之上。z-index的值是可以设置0和负数的。</p>
-</li>
-<li><p><strong>同级</strong> 下，z-index: 0 的层级比auto高</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>注意</strong>：A元素(子元素A1)，兄弟元素B(子元素B1)。</p>
-</blockquote>
-<ul>
-<li><p>若 A: 0，B: 1 （A &lt; B）</p>
-<ul>
-<li><p>A1 &lt; B</p>
-</li>
-<li><p>A1 &lt; B1</p>
-</li>
-</ul>
-</li>
-<li><p>若 A: auto，A1 &gt; B （A1直接可以跟B比）</p>
-<ul>
-<li>A1 &gt; B1</li>
-</ul>
-</li>
-<li><p>若A: auto，A1: -1</p>
-<ul>
-<li>A1 &lt; A</li>
-</ul>
-</li>
-<li><p>若A: integer</p>
-<ul>
-<li>A1 &gt; A</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/04/10/z-index+层叠上下文/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
